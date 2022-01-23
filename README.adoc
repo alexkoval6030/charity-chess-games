@@ -2,54 +2,58 @@
 
 == Description
 
-=== Данный проект задуман для проведения благотворительных партий по шахматам в формате один против многих.
+=== This project is designed to hold charity chess games in a format of one against many.
 
-Пользователи регистрируются в системе. Некий размер баланса на счёте пользователя даёт возможность получить ему статус VIP. Пользователь со статусом VIP имеет возможность стать инициатором благотворительной шахматной партии регистрируя её с некой ставкой. Остальные пользователи могут стать участниками этой партии подключаясь к ней со ставкой не меньшей минимальной.
+Users are registered on the system. A certain amount of balance on the user’s account gives the user the opportunity to receive the VIP status. A user with VIP status has the opportunity to become the initiator of a charity chess game by registering it with a certain rate. Other users can join this group. They will join at a minimum rate or higher.
 
-Проведение партии в данном проекте не реализовывается. А результат партии определит Random.
+The progress of the game is not realized in this project. The result of the game will be determined by accident.
 
-Ход партии:
+Course of the game:
 
-* Первый ход совершает сторона, которую определяет VIP пользователь (в данном примере рассмотрим первый ход VIP пользователя, противостоят ему группа пользователей подключившихся к ней).
-* Каждый пользователь группы совершает ход, который регистрируется в таблице ходов пользователей. Из таблицы ходов выбирается тот, который пользователи совершили чаще. В ситуации когда несколько ходов в таблице имеют одинаковое количество совершения пользователями, всем пользователям предлагается выбрать один из имеющих одинаковое совершение. (Возможно применение не второго этапа голосования, а сравнение суммарного рейтинга пользователей проголосовавших за ходы имеющие одинаковое положение в таблице ходов).
-* После совершения хода одной из сторон все пользователи получают уведомления о его совершении. Спорные ситуации связанные с ходом пользователей также являются ситуацией в которой пользователи получают уведомления и возможные решения этой ситуации (в варианте с вторым этапом голосования).
+* First move is made by the party defined by the VIP user (in this example, consider the first move of a VIP user, opposed by a group of users connected to the game)
+* Each user of the group makes a move, which is recorded in the user moves table. The move table selects the move that users made more frequently. In a situation where several moves in a table are selected by users the same number of times, all users are asked to choose one of these moves. (It is possible to use not the second round of voting, but a comparison of the total rating of users who voted for the moves that lead in the table of moves).
+* Once a move has been made by one of the parties, all users are notified. Controversy over the course of the game is also a situation where users receive notifications and possible solutions (in the case of the second ballot).
 
-Результатом партии является выигрыш одной из сторон или ничья.
-В зависимости от результата суммарный объём всех ставок делится в процентном соотношении:
+The result of a party is a win or draw.
+Depending on the result, the total amount of all bets is divided in percentage ratio:
 
-* 70% благотворительный фонд. Адресата фонда определяет VIP пользователь организовавший данную партию в момент создания партии.
-* 5% организаторам данных благотворительных партий. (Поддержание и развитие проекта, реклама предстоящих игр)
-* 25% победителю партии. В случае победы группы пользователей 25% от объёма всех ставок делится в процентном соотношении в зависимости от ставки конкретного пользователя к общей сумме ставок всех пользователей данной группы.
+* 70% of the charity. The fund’s addressee is identified by the VIP user when the game is created.
+* 5% of charity event organizers. (Project support and development, promotion of upcoming games).
+* 25% to the winner of the party. If a group of users wins, 25% of all bets are divided in percentage terms, depending on the bet of a particular user, to the total bet of all users of a given group.
 
-Возможно другое процентное соотношение и количество пунктов разделения выигрышного фонда.
+The number of items and the percentage for each item may vary.
 
-==== Какую проблему данный проект решает или что нового приносит для пользователей?
+==== What problems does the project solve or what innovations for users?
 
-* Проект помогает осветить проблему нуждающуюся в благотворительности (COVID, онкология, помощь детям, помощь пострадавшим от стихийного бедствия и т.д)
-* Шахматы — это бесконечные упражнения для ума, который развивают умственные способности, используемые на протяжении всей жизни, такие как: концентрация, критическое мышление, абстрактное мышление, решение проблем, распознавания образов, стратегическое планирование, память, творчество, анализ, синтез и оценка.
-* Проект даёт возможность сразиться в шахматы со своим кумиром.
-* Проект не позволяет пользователям выводить средства на личные счета. Все средства в системе можно использовать только в благотворительных целях.
+* The project helps to voice the problem of charity (COVID, oncology, helping children, disaster relief, etc.)
+* Chess is an endless exercise for the mind that develops the mental abilities that are used throughout life, such as concentration, critical thinking, abstract thinking, problem-solving, pattern recognition, strategic planning, Memory, creativity, analysis, synthesis and evaluation.
+* The project gives you an opportunity to fight in chess with your idol.
+* The project does not allow users to transfer funds to personal accounts. All funds in the system can be used only for charitable purposes.
 
-==== Потенциальные пользователи
+==== Potential users
 
-* Публичные, известные люди занимающиеся благотворительностью, которые хотят привлечь внимание к волнующей их проблеме.
-* Люди которым интересны шахматы.
-* Люди которым интересна благотворительность.
-* Люди желающие сразится со своими кумирами или просто известными людьми.
+* Public, well-known people who want to draw attention to the problems of charity.
+* People who are interested in chess.
+* People who are interested in charity.
+* People who want to fight their idols or famous people.
 
-==== Аналогичные приложения
+==== Similar annexes
 
-* Проводятся https://chesshouse.by/tournaments/festival-18-04-2020[онлайн турниры] и https://www.legalchess.ru/[офлайн турниры].
+https://chesshouse.by/tournaments/festival-18-04-2020[Online] and https://www.legalchess.ru/[offline] tournaments
 
-==== Конкурентное преимущество
+==== Competitive advantage
 
-* Турниры проводятся в онлайн режиме, что актуально в условиях пандемии.
-* Не нужно регистрироваться на одном ресурсе, а платить вступительные взносы через другую систему.
-* Игры проводятся в другом формате нежели турниры приведенные выше, что позволяет пользователям играть против особой известной личности.
-* Партии проводится в формате "игра по переписке", что не привязывает всех участвующих людей к постоянному ожиданию хода соперника. Временное ограничение на осуществление своего хода имеет порог и имеет возможность заранее проинформировать участников о скором его наступлении.
+* Tournaments are held online, which is relevant in the context of a pandemic.
+* User registration and financial transactions in one application
+* Games are held in a different format than the tournaments mentioned above, which allows users to play against a special person.
+* The game is held in the format of "Correspondence Game", which does not bind all participating people to the constant wait of the opponent’s move. The temporary restriction on the exercise of its movement has a threshold, and it is possible to inform the participants in advance of its imminent occurrence.
 
-==== Бизнес анализ
+==== Business analysis
 
 User stories
 
-* https://miro.com/welcomeonboard/dVg4TVZDc2Z6SVJIeEtVcEUzRUR1dUxjWmtpRjhkN3hLTzJnOXZxQjdkSlJmblMzOUN2UFJ1aXk1RThvNFdPRXwzNDU4NzY0NTE2ODY1NjM1MDgx?invite_link_id=73846758994[Mind Map]
+https://miro.com/welcomeonboard/dVg4TVZDc2Z6SVJIeEtVcEUzRUR1dUxjWmtpRjhkN3hLTzJnOXZxQjdkSlJmblMzOUN2UFJ1aXk1RThvNFdPRXwzNDU4NzY0NTE2ODY1NjM1MDgx?invite_link_id=73846758994[Mind Map]
+
+UML class diagram
+
+https://app.dbdesigner.net/designer/schema/492337[UML Class Diagram with dbdesigner]
