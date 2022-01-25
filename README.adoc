@@ -1,5 +1,7 @@
 = Charity chess games
 
+http://ec2-44-201-198-61.compute-1.amazonaws.com:8080/charity_chess_games/[Charity chess games]
+
 == Description
 
 === This project is designed to hold charity chess games in a format of one against many.
