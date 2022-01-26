@@ -7,7 +7,7 @@
 </head>
 <body>
 <div>
-    <img src="WEB-INF/jsp/static/img/chess.png" alt="chess-logo">
+    <img src="${P}" alt="chess-logo">
     <h1>Welcome to Charity Chess Games</h1>
 </div>
 </body>
