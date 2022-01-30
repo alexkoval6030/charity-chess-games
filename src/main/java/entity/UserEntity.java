@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,9 +27,8 @@ public class UserEntity extends BaseEntity{
     private String username;
     @Column(name = "password")
     private String password;
-    @ManyToMany(mappedBy = "game")
-    private Set<GameEntity> games = new  HashSet<>();
-    @ManyToOne
-    @JoinColumn(name = "user")
-    private UserEntity user;
+    @ManyToMany
+    private Set<GameEntity> games = new HashSet<>();
+    @OneToMany
+    private List<GameEntity> game = new ArrayList<GameEntity>();
 }

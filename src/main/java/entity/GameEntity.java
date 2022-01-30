@@ -17,8 +17,9 @@ import java.util.Set;
 @Getter
 @Setter
 public class GameEntity extends BaseEntity {
-    @OneToMany(mappedBy = "user")
-    private List<UserEntity> user = new ArrayList<UserEntity>();
+    @ManyToOne
+    @JoinColumn(name = "creator")
+    private UserEntity user;
     @OneToOne
     @JoinColumn(name = "game_status_id")
     private GameStatusEntity gameStatus_id;
