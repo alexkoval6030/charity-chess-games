@@ -1,15 +1,17 @@
 package entity;
 
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
+@NoArgsConstructor
 @Getter
 @Setter
 public class UserEntity extends BaseEntity{
@@ -23,4 +25,9 @@ public class UserEntity extends BaseEntity{
     private String username;
     @Column(name = "password")
     private String password;
+    @ManyToMany(mappedBy = "game")
+    private Set<GameEntity> games = new  HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private UserEntity user;
 }
