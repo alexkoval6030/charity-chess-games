@@ -5,18 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserEntity extends BaseEntity{
+public class UserEntity extends BaseEntity {
     @Column(name = "firstname")
     private String firstname;
     @Column(name = "lastname")
@@ -28,7 +26,7 @@ public class UserEntity extends BaseEntity{
     @Column(name = "password")
     private String password;
     @ManyToMany
-    private Set<GameEntity> games = new HashSet<>();
+    private Set<GameEntity> games;
     @OneToMany
-    private List<GameEntity> game = new ArrayList<GameEntity>();
+    private List<GameEntity> createdGames;
 }
