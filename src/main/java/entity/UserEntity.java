@@ -1,9 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.Set;
@@ -12,8 +10,10 @@ import java.util.Set;
 @Table(name = "users")
 @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class UserEntity extends BaseEntity {
     @Column(name = "firstname")
     private String firstname;
@@ -25,8 +25,9 @@ public class UserEntity extends BaseEntity {
     private String username;
     @Column(name = "password")
     private String password;
-    @ManyToMany
+    @ManyToMany(mappedBy = "userGroup")
     private Set<GameEntity> games;
     @OneToMany
+    @JoinColumn(name = "game_id")
     private List<GameEntity> createdGames;
 }

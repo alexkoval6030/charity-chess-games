@@ -1,9 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,11 +10,13 @@ import java.util.Set;
 @Table(name = "game")
 @AttributeOverride(name = "id", column = @Column(name = "game_id"))
 @NoArgsConstructor
+@AllArgsConstructor()
 @Getter
 @Setter
+@ToString
 public class GameEntity extends BaseEntity {
     @ManyToOne
-    @JoinColumn(name = "creator")
+    @JoinColumn(name = "user_id")
     private UserEntity user;
     @OneToOne
     @JoinColumn(name = "game_status_id")
@@ -24,7 +24,7 @@ public class GameEntity extends BaseEntity {
     @Column(name = "is_creator_win")
     private Boolean isCreatorWin;
     @ManyToMany
-    @JoinTable(name = "game_user_group",
+    @JoinTable(name = "game_user_link",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id")
     )

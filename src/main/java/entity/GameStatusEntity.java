@@ -1,9 +1,7 @@
 package entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import service.GameStatusList;
 
 import java.time.LocalDate;
@@ -12,8 +10,10 @@ import java.time.LocalDate;
 @Table(name = "game_status")
 @AttributeOverride(name = "id", column = @Column(name = "game_status_id"))
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class GameStatusEntity extends BaseEntity{
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
