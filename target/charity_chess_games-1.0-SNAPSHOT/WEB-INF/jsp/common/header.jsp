@@ -21,8 +21,10 @@
                             Login/Registration
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/login.jsp">Login</a></li>
-                            <li><a class="dropdown-item" href="#">Registration</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/login">Login</a>
+                            </li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/registration">Registration</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

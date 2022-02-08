@@ -1,42 +1,48 @@
 package dao.impl;
 
 import dao.UserDao;
-import entity.UserEntity;
+import entity.User;
 import org.hibernate.Session;
 import service.SessionUtil;
 
 public class UserDaoImpl implements UserDao {
+    private static final UserDao INSTANCE = new UserDaoImpl();
+
+    private UserDaoImpl() {
+    }
+
+    public static UserDao getInstance() {
+        return INSTANCE;
+    }
+
     @Override
-    public void save(UserEntity userEntity) {
+    public void save(User userEntity) {
         Session session = SessionUtil.openSession();
-        if (findByEmail(userEntity.getEmail()) != userEntity) {
-            session.save(userEntity);
-        } else {
-            update(userEntity);
-        }
+        session.save(userEntity);
         session.close();
     }
 
     @Override
-    public UserEntity findByEmail(String email) {
+    public String findByEmail(String email) {
         Session session = SessionUtil.openSession();
-        UserEntity singleResult = session.createQuery("select * from UserEntity where email = " + email, UserEntity.class)
+        User singleResult = session.createQuery("select * from User where email = " + email, User.class)
                 .getSingleResult();
+        String resultEmail = singleResult.getEmail();
         session.close();
-        return singleResult;
+        return resultEmail;
     }
 
     @Override
-    public void update(UserEntity user) {
+    public void update(User user) {
         Session session = SessionUtil.openSession();
         session.update(findByEmail(user.getEmail()));
         session.close();
     }
 
     @Override
-    public void delete(UserEntity user) {
+    public void delete(User user) {
         Session session = SessionUtil.openSession();
-        session.delete(findByEmail(user.getEmail()));
+        session.delete(user);
         session.close();
     }
 }
