@@ -28,7 +28,7 @@ public class RegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
         UserService userService = UserServiceImpl.getInstance();
         UserDao userDao = UserDaoImpl.getInstance();
-        if (userDao.findByEmail(email).equals(email)){
+        if (userDao.findByEmail(email) != null){
             request.setAttribute("error", "User with such email already registered");
             request.getRequestDispatcher("/registration.jsp").forward(request, response);
         } else {

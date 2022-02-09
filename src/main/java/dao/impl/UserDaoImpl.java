@@ -2,7 +2,11 @@ package dao.impl;
 
 import dao.UserDao;
 import entity.User;
+import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+import org.hibernate.query.criteria.JpaCriteriaQuery;
+import org.hibernate.query.criteria.JpaRoot;
 import service.SessionUtil;
 
 public class UserDaoImpl implements UserDao {
@@ -16,20 +20,26 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void save(User userEntity) {
+    public void save(User user) {
         Session session = SessionUtil.openSession();
-        session.save(userEntity);
+        session.save(user);
         session.close();
     }
 
     @Override
-    public String findByEmail(String email) {
-        Session session = SessionUtil.openSession();
-        User singleResult = session.createQuery("select * from User where email = " + email, User.class)
-                .getSingleResult();
-        String resultEmail = singleResult.getEmail();
-        session.close();
-        return resultEmail;
+    public User findByEmail(String email) throws NoResultException {
+        try {
+            Session session = SessionUtil.openSession();
+            HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            JpaCriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+            JpaRoot<User> from = criteriaQuery.from(User.class);
+            criteriaQuery.select(from).where(criteriaBuilder.equal(from.get("email"), email));
+            User user = session.createQuery(criteriaQuery).getSingleResult();
+            session.close();
+            return user;
+        } catch (NoResultException e){
+            return null;
+        }
     }
 
     @Override

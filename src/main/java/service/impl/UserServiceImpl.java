@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
     public static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private final int MIN_LENGTH_USERNAME = 2;
     private final int MIN_LENGTH_PASSWORD = 7;
-    UserDao userDao = UserDaoImpl.getInstance();
 
     private UserServiceImpl(){}
 
@@ -25,6 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(UUID id, String firstname, String lastname, String email, String username, String password) throws ValidationException {
+        UserDao instance = UserDaoImpl.getInstance();
         User user = new User();
         user.setId(id);
         if (firstname != null && firstname.length() >= MIN_LENGTH_OF_NAME_FIELDS
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new ValidationException("Username and password must be at least 8 characters");
         }
-        userDao.save(user);
+        instance.save(user);
         return user;
     }
 }
