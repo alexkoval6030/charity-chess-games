@@ -17,7 +17,7 @@ import java.util.Set;
 public class GameEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
     @OneToOne
     @JoinColumn(name = "game_status_id")
     private GameStatusEntity gameStatus_id;
@@ -28,5 +28,5 @@ public class GameEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id")
     )
-    private Set<User> userGroup = new HashSet<>();
+    private Set<UserEntity> userGroup = new HashSet<>();
 }

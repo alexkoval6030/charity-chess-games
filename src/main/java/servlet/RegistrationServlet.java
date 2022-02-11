@@ -34,11 +34,11 @@ public class RegistrationServlet extends HttpServlet {
         } else {
             try {
                 userService.createUser(UUID.randomUUID(), firstname, lastname, email, username, password);
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
             } catch (ValidationException e) {
                 request.setAttribute("error", e.getMessage());
                 request.getRequestDispatcher("/registration.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 }

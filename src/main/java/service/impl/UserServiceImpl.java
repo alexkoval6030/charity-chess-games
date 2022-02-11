@@ -2,7 +2,7 @@ package service.impl;
 
 import dao.UserDao;
 import dao.impl.UserDaoImpl;
-import entity.User;
+import entity.UserEntity;
 import jakarta.xml.bind.ValidationException;
 import service.UserService;
 
@@ -23,9 +23,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(UUID id, String firstname, String lastname, String email, String username, String password) throws ValidationException {
+    public UserEntity createUser(UUID id, String firstname, String lastname, String email, String username, String password) throws ValidationException {
         UserDao instance = UserDaoImpl.getInstance();
-        User user = new User();
+        UserEntity user = new UserEntity();
         user.setId(id);
         if (firstname != null && firstname.length() >= MIN_LENGTH_OF_NAME_FIELDS
                 && lastname != null && lastname.length() >= MIN_LENGTH_OF_NAME_FIELDS){
@@ -39,12 +39,15 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new ValidationException("Email is not correct");
         }
-        if (username != null && username.length() >= MIN_LENGTH_USERNAME
-                && password != null && password.length() >= MIN_LENGTH_PASSWORD){
+        if (username != null && username.length() >= MIN_LENGTH_USERNAME){
             user.setUsername(username);
+        } else {
+            throw new ValidationException("Username must be at least 2 characters");
+        }
+        if (password != null && password.length() >= MIN_LENGTH_PASSWORD){
             user.setPassword(password);
         } else {
-            throw new ValidationException("Username and password must be at least 8 characters");
+            throw new ValidationException("Password must be at least 7 characters");
         }
         instance.save(user);
         return user;

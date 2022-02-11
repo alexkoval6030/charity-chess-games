@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-public class User extends BaseEntity {
+public class UserEntity extends BaseEntity {
     @Column(name = "firstname")
     private String firstname;
     @Column(name = "lastname")

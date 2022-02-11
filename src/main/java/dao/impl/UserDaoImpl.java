@@ -1,13 +1,16 @@
 package dao.impl;
 
 import dao.UserDao;
-import entity.User;
+import entity.UserEntity;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
-import org.hibernate.query.criteria.HibernateCriteriaBuilder;
-import org.hibernate.query.criteria.JpaCriteriaQuery;
-import org.hibernate.query.criteria.JpaRoot;
 import service.SessionUtil;
+
+import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     private static final UserDao INSTANCE = new UserDaoImpl();
@@ -20,37 +23,37 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void save(User user) {
+    public void save(UserEntity user) {
         Session session = SessionUtil.openSession();
+        session.getTransaction().begin();
         session.save(user);
+        session.getTransaction().commit();
         session.close();
     }
 
     @Override
-    public User findByEmail(String email) throws NoResultException {
-        try {
-            Session session = SessionUtil.openSession();
-            HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            JpaCriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
-            JpaRoot<User> from = criteriaQuery.from(User.class);
-            criteriaQuery.select(from).where(criteriaBuilder.equal(from.get("email"), email));
-            User user = session.createQuery(criteriaQuery).getSingleResult();
-            session.close();
-            return user;
-        } catch (NoResultException e){
-            return null;
-        }
+    public UserEntity findByEmail(String email) throws NoResultException {
+        Session session = SessionUtil.openSession();
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<UserEntity> criteriaQuery = criteriaBuilder.createQuery(UserEntity.class);
+        Root<UserEntity> from = criteriaQuery.from(UserEntity.class);
+        criteriaQuery.select(from).where(criteriaBuilder.equal(from.get("email"), email));
+        session.getTransaction().begin();
+        UserEntity entity = session.createQuery(criteriaQuery).getResultStream().findFirst().orElse(null);
+        session.getTransaction().commit();
+        session.close();
+        return entity;
     }
 
     @Override
-    public void update(User user) {
+    public void update(UserEntity user) {
         Session session = SessionUtil.openSession();
         session.update(findByEmail(user.getEmail()));
         session.close();
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(UserEntity user) {
         Session session = SessionUtil.openSession();
         session.delete(user);
         session.close();

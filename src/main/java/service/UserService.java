@@ -1,10 +1,10 @@
 package service;
 
-import entity.User;
+import entity.UserEntity;
 import jakarta.xml.bind.ValidationException;
 
 import java.util.UUID;
 
 public interface UserService {
-    User createUser(UUID id, String firstname, String lastname, String email, String username, String password) throws ValidationException;
+    UserEntity createUser(UUID id, String firstname, String lastname, String email, String username, String password) throws ValidationException;
 }

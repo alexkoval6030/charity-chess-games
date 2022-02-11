@@ -1,13 +1,13 @@
 package dao;
 
-import entity.User;
+import entity.UserEntity;
 
 public interface UserDao {
-    void save(User user);
+    void save(UserEntity user);
 
-    User findByEmail(String email);
+    UserEntity findByEmail(String email);
 
-    void update(User user);
+    void update(UserEntity user);
 
-    void delete(User user);
+    void delete(UserEntity user);
 }
