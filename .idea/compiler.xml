@@ -7,7 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="charity_chess_games" />
+        <module name="web" />
+        <module name="dal" />
+        <module name="service" />
       </profile>
     </annotationProcessing>
   </component>
