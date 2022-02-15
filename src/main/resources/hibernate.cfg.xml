@@ -5,7 +5,8 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+<!--        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>-->
+        <property name="connection.url">jdbc:postgresql://jd2-86.cikhvleffm90.us-east-1.rds.amazonaws.com/postgres</property>
 <!--        <property name="connection.username">kovalenko</property>-->
 <!--        <property name="connection.password">12345678</property>-->
         <property name="connection.username">postgres</property>
