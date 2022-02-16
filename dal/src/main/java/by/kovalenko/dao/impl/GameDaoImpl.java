@@ -2,7 +2,7 @@ package by.kovalenko.dao.impl;
 
 import by.kovalenko.dao.GameDao;
 import by.kovalenko.entity.GameEntity;
-import by.kovalenko.service.SessionUtil;
+import by.kovalenko.util.SessionUtil;
 import org.hibernate.Session;
 
 import java.util.List;

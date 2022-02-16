@@ -2,8 +2,8 @@ package by.kovalenko.dao.impl;
 
 import by.kovalenko.dao.GameStatusDao;
 import by.kovalenko.entity.GameStatusEntity;
+import by.kovalenko.util.SessionUtil;
 import org.hibernate.Session;
-import by.kovalenko.service.SessionUtil;
 
 import java.time.LocalDate;
 import java.util.List;

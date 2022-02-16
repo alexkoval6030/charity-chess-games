@@ -1,7 +1,6 @@
 package by.kovalenko.dao;
 
 import by.kovalenko.entity.GameStatusEntity;
-import by.kovalenko.service.GameStatusList;
 
 import java.time.LocalDate;
 import java.util.List;

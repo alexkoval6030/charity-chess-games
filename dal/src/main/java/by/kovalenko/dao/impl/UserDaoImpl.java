@@ -2,13 +2,12 @@ package by.kovalenko.dao.impl;
 
 import by.kovalenko.dao.UserDao;
 import by.kovalenko.entity.UserEntity;
+import by.kovalenko.util.SessionUtil;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
-import by.kovalenko.service.SessionUtil;
 
 public class UserDaoImpl implements UserDao {
     private static final UserDao INSTANCE = new UserDaoImpl();
