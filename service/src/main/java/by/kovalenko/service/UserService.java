@@ -1,7 +1,7 @@
 package by.kovalenko.service;
 
 import by.kovalenko.entity.UserEntity;
-import jakarta.xml.bind.ValidationException;
+import by.kovalenko.exception.ValidationException;
 
 import java.util.UUID;
 

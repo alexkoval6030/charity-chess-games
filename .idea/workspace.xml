@@ -5,28 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99c76618-42ac-457d-b579-cedf362114c9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dal/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dal/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/GameStatusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/GameStatusDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/impl/GameDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/impl/GameDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/impl/GameStatusDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/impl/GameStatusDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/dao/impl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/entity/GameStatusEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/entity/GameStatusEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/util/SessionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/dal/src/main/java/by/kovalenko/util/SessionUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/servlet/RegistrationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/servlet/RegistrationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/servlet/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/servlet/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/kovalenko/servlet/RegistrationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/servlet/RegistrationServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,6 +41,9 @@
     </option>
   </component>
   <component name="ProjectId" id="25Ca10QJBDJk8EmOHAKXpXaskGt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -50,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kovalenko/dev/practice-jd2-86" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -58,6 +60,101 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="by.kovalenko.service.impl" />
+      <recent name="by.kovalenko.dao.impl" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 10.0.14" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.0.14" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="web:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/ccg" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="84a40ba3-070e-4cc1-9d62-10d028f13553" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="1738" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="web:war" />
+        </option>
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -68,7 +165,8 @@
       <option name="presentableId" value="Default" />
       <updated>1645033303299</updated>
       <workItem from="1645033306615" duration="847000" />
-      <workItem from="1645034204895" duration="699000" />
+      <workItem from="1645034204895" duration="1273000" />
+      <workItem from="1645457155643" duration="4177000" />
     </task>
     <servers />
   </component>

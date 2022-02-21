@@ -3,8 +3,8 @@ package by.kovalenko.service.impl;
 import by.kovalenko.dao.UserDao;
 import by.kovalenko.dao.impl.UserDaoImpl;
 import by.kovalenko.entity.UserEntity;
+import by.kovalenko.exception.ValidationException;
 import by.kovalenko.service.UserService;
-import jakarta.xml.bind.ValidationException;
 
 import java.util.UUID;
 import java.util.regex.Pattern;
