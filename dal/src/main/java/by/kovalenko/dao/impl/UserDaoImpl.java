@@ -8,17 +8,10 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserDaoImpl implements UserDao {
-    private static final UserDao INSTANCE = new UserDaoImpl();
-
-    private UserDaoImpl() {
-    }
-
-    public static UserDao getInstance() {
-        return INSTANCE;
-    }
-
     @Override
     public void save(UserEntity user) {
         Session session = SessionUtil.openSession();

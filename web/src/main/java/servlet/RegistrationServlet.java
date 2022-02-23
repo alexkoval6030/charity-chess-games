@@ -11,26 +11,29 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.util.UUID;
 
 @WebServlet(urlPatterns = "/registration")
 public class RegistrationServlet extends HttpServlet {
+    private UserServiceImpl userService;
+    private UserDaoImpl userDao;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/registration.jsp").forward(request, response);
     }
 
     @Override
+    @Autowired
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        UserService userService = UserServiceImpl.getInstance();
-        UserDao userDao = UserDaoImpl.getInstance();
         if (userDao.findByEmail(email) != null){
             request.setAttribute("error", "User with such email already registered");
             request.getRequestDispatcher("/registration.jsp").forward(request, response);

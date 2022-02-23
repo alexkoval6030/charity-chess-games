@@ -5,26 +5,28 @@ import by.kovalenko.dao.impl.UserDaoImpl;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.ValidationException;
 import by.kovalenko.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 import java.util.regex.Pattern;
 
+@Service
 public class UserServiceImpl implements UserService {
-    private static UserService INSTANCE = new UserServiceImpl();
-    private final int MIN_LENGTH_OF_NAME_FIELDS = 2;
     public static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+    private final int MIN_LENGTH_OF_NAME_FIELDS = 2;
     private final int MIN_LENGTH_USERNAME = 2;
     private final int MIN_LENGTH_PASSWORD = 7;
 
-    private UserServiceImpl(){}
+    private final UserDao userDao;
 
-    public static UserService getInstance(){
-        return INSTANCE;
+    @Autowired
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
     public UserEntity createUser(UUID id, String firstname, String lastname, String email, String username, String password) throws ValidationException {
-        UserDao instance = UserDaoImpl.getInstance();
         UserEntity user = new UserEntity();
         user.setId(id);
         if (firstname != null && firstname.length() >= MIN_LENGTH_OF_NAME_FIELDS
@@ -49,7 +51,7 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new ValidationException("Password must be at least 7 characters");
         }
-        instance.save(user);
+        userDao.save(user);
         return user;
     }
 }
