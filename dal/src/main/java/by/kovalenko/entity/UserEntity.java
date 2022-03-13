@@ -1,5 +1,6 @@
 package by.kovalenko.entity;
 
+import by.kovalenko.util.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,9 @@ public class UserEntity extends BaseEntity {
     private String username;
     @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
     @ManyToMany(mappedBy = "userGroup")
     private Set<GameEntity> games;
     @OneToMany

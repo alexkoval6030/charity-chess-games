@@ -3,8 +3,10 @@ package by.kovalenko.service.impl;
 import by.kovalenko.dao.UserDao;
 import by.kovalenko.dao.impl.UserDaoImpl;
 import by.kovalenko.entity.UserEntity;
+import by.kovalenko.exception.UserNotFoundException;
 import by.kovalenko.exception.ValidationException;
 import by.kovalenko.service.UserService;
+import by.kovalenko.util.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +53,30 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new ValidationException("Password must be at least 7 characters");
         }
+        user.setRole(UserRole.USER);
         userDao.save(user);
+        return user;
+    }
+
+    @Override
+    public UserEntity findByUsernameAndPassword(String username, String password) throws UserNotFoundException {
+        UserEntity byUsernameAndPassword = userDao.findByUsernameAndPassword(username, password);
+        UserEntity user = new UserEntity();
+        if (byUsernameAndPassword != null){
+            user.setId(byUsernameAndPassword.getId());
+            user.setFirstname(byUsernameAndPassword.getFirstname());
+            user.setLastname(byUsernameAndPassword.getLastname());
+            user.setEmail(byUsernameAndPassword.getEmail());
+            user.setUsername(byUsernameAndPassword.getUsername());
+            user.setRole(byUsernameAndPassword.getRole());
+        } else {
+            try {
+                throw new UserNotFoundException();
+            } catch (UserNotFoundException e) {
+                e.printStackTrace();
+                throw new UserNotFoundException();
+            }
+        }
         return user;
     }
 }

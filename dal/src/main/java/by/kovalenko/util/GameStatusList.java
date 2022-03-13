@@ -1,5 +1,7 @@
 package by.kovalenko.util;
 
 public enum GameStatusList {
-    PLANNED, DURING, FINISHED
+    PLANNED,
+    DURING,
+    FINISHED,
 }
