@@ -45,7 +45,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Registration</button>
                 </form>
-                <div class="text-center mt-4"><span>Already a member?</span> <a href="<c:url value="/login"/>"
+                <div class="text-center mt-4"><span>Already a member?</span> <a href="<c:url value="/form/login"/>"
                                                                                 class="text-decoration-none">Login</a>
                 </div>
             </div>

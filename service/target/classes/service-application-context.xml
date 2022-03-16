@@ -16,4 +16,5 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="by.kovalenko.service.impl"/>
+    <context:component-scan base-package="by.kovalenko.dao.impl"/>
 </beans>

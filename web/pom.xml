@@ -16,6 +16,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
             <groupId>by.kovalenko.charity.chess.games</groupId>
             <artifactId>service</artifactId>
             <version>1.0-SNAPSHOT</version>

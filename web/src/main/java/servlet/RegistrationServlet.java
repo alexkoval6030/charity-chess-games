@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.View;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/registration.jsp").forward(request, response);
+        request.getRequestDispatcher(View.REGISTRATION.getViewPath()).forward(request, response);
     }
 
     @Override
@@ -42,14 +43,14 @@ public class RegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
         if (userDao.findByEmail(email) != null){
             request.setAttribute("error", "User with such email already registered");
-            request.getRequestDispatcher("/registration.jsp").forward(request, response);
+            request.getRequestDispatcher(View.REGISTRATION.getViewPath()).forward(request, response);
         } else {
             try {
                 userService.createUser(UUID.randomUUID(), firstname, lastname, email, username, password);
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                request.getRequestDispatcher(View.LOGIN.getViewPath()).forward(request, response);
             } catch (ValidationException e) {
                 request.setAttribute("error", e.getMessage());
-                request.getRequestDispatcher("/registration.jsp").forward(request, response);
+                request.getRequestDispatcher(View.REGISTRATION.getViewPath()).forward(request, response);
             }
         }
     }

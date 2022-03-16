@@ -4,17 +4,20 @@ import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.UserNotFoundException;
 import by.kovalenko.service.UserService;
 import by.kovalenko.util.ServiceContextUtil;
+
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.AuthPath;
+import model.View;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
 
 @WebFilter({
         "/api/login",
-        "/api/logout"
+        "/api/logout",
 })
 public class AuthenticationFilter implements Filter {
 
@@ -51,13 +54,13 @@ public class AuthenticationFilter implements Filter {
         } catch (IOException | UserNotFoundException e) {
             httpServletRequest.getSession().invalidate();
             httpServletRequest.setAttribute("error", "Not valid username or password");
-            httpServletRequest.getRequestDispatcher("/WEB-INF/login.jsp").forward(httpServletRequest, httpServletResponse);
+            httpServletRequest.getRequestDispatcher(View.LOGIN.getViewPath()).forward(httpServletRequest, httpServletResponse);
         }
     }
 
     private void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         httpServletRequest.getSession().invalidate();
-        httpServletRequest.getRequestDispatcher("/WEB-INF/login.jsp").forward(httpServletRequest, httpServletResponse);
+        httpServletRequest.getRequestDispatcher(View.LOGIN.getViewPath()).forward(httpServletRequest, httpServletResponse);
     }
 
     @Override

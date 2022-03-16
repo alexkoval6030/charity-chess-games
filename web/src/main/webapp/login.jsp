@@ -32,7 +32,7 @@
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
                 <div class="text-center mt-4"><span>You aren't a member?</span> <a
-                        href="<c:url value="form/registration"/>"
+                        href="<c:url value="/form/registration"/>"
                         class="text-decoration-none">Registration</a>
                 </div>
             </div>
