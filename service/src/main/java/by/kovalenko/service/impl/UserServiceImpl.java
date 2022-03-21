@@ -1,7 +1,6 @@
 package by.kovalenko.service.impl;
 
 import by.kovalenko.dao.UserDao;
-import by.kovalenko.dao.impl.UserDaoImpl;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.UserNotFoundException;
 import by.kovalenko.exception.ValidationException;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
     public static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private final int MIN_LENGTH_OF_NAME_FIELDS = 2;

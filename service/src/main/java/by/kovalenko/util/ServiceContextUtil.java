@@ -3,7 +3,6 @@ package by.kovalenko.util;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
 public class ServiceContextUtil {
     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext();
 

@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="${pageContext.request.contextPath}">
-                <img src="${pageContext.request.contextPath}/static/img/chess.png" height="65" width="86" alt="chess">
+                <img src="/static/img/chess.png" height="65" width="86" alt="chess">
                 Charity Chess Games</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -35,7 +35,7 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><c:out value="${sessionScope.user.firstname} ${sessionScope.user.lastname}"/></a>
                     </li>
                     <li class="nav-item">
-                        <a href="<c:url value="/api/registration"/>"
+                        <a href="<c:url value="/api/login"/>"
                            class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Logout</a>
                     </li>
                 </ul>
