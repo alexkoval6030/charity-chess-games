@@ -9,10 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan(basePackages = {
-        "by.kovalenko.controller",
-        "by.kovalenko.config"
-})
+@ComponentScan(basePackages = "by.kovalenko.controller")
 @Import(value = {DaoConfig.class, ServiceConfig.class})
 @EnableWebMvc
 public class WebConfig {

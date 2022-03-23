@@ -1,8 +1,7 @@
+by\kovalenko\SecurityInitializer.class
 by\kovalenko\config\WebConfig.class
 by\kovalenko\model\AuthPath.class
 by\kovalenko\config\SecurityConfig.class
-by\kovalenko\config\WebApplicationInitializer.class
 by\kovalenko\model\View.class
-by\kovalenko\service\UserDetailsServerImpl.class
-by\kovalenko\config\SecurityInitializer.class
+by\kovalenko\WebApplicationInitializer.class
 by\kovalenko\controller\ControllerUserView.class

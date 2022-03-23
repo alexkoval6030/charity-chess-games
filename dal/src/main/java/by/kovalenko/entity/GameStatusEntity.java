@@ -19,6 +19,5 @@ public class GameStatusEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private GameStatusList status;
     @Column(name = "date")
-    @Temporal(TemporalType.DATE)
     private LocalDate date;
 }

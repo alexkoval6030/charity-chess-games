@@ -1,6 +1,7 @@
 package by.kovalenko.config;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -19,10 +21,11 @@ import java.util.Properties;
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 public class DaoConfig {
+    @Autowired
     private Environment env;
 
     @Bean
-    public DriverManagerDataSource driverManagerDataSource(){
+    public DataSource driverManagerDataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("jdbc.driver")));
         dataSource.setUrl(env.getProperty("jdbc.url"));
