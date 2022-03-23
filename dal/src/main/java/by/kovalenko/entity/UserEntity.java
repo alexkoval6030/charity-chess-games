@@ -1,9 +1,10 @@
 package by.kovalenko.entity;
 
 import by.kovalenko.util.UserRole;
-import jakarta.persistence.*;
+
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 

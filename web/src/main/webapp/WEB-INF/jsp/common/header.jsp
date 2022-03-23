@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="${pageContext.request.contextPath}">
-                <img src="/static/img/chess.png" height="65" width="86" alt="chess">
+                <img src="${}/static/img/chess.png" height="65" width="86" alt="chess">
                 Charity Chess Games</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">

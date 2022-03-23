@@ -7,6 +7,8 @@ public interface UserDao {
 
     UserEntity findByEmail(String email);
 
+    UserEntity findByUsername(String username);
+
     UserEntity findByUsernameAndPassword(String username, String password);
 
     void update(UserEntity user);

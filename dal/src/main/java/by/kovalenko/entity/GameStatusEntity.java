@@ -1,9 +1,9 @@
 package by.kovalenko.entity;
 
 import by.kovalenko.util.GameStatusList;
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity

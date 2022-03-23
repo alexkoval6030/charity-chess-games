@@ -1,4 +1,5 @@
 E:\project\pet-project\dal\src\main\java\by\kovalenko\entity\GameStatusEntity.java
+E:\project\pet-project\dal\src\main\java\by\kovalenko\util\UserRole.java
 E:\project\pet-project\dal\src\main\java\by\kovalenko\dao\GameStatusDao.java
 E:\project\pet-project\dal\src\main\java\by\kovalenko\entity\UserEntity.java
 E:\project\pet-project\dal\src\main\java\by\kovalenko\entity\GameEntity.java
@@ -8,6 +9,6 @@ E:\project\pet-project\dal\src\main\java\by\kovalenko\dao\impl\GameStatusDaoImpl
 E:\project\pet-project\dal\src\main\java\by\kovalenko\entity\BaseEntity.java
 E:\project\pet-project\dal\src\main\java\by\kovalenko\dao\GameDao.java
 E:\project\pet-project\dal\src\main\java\by\kovalenko\util\SessionUtil.java
+E:\project\pet-project\dal\src\main\java\by\kovalenko\config\DaoConfig.java
 E:\project\pet-project\dal\src\main\java\by\kovalenko\dao\UserDao.java
 E:\project\pet-project\dal\src\main\java\by\kovalenko\dao\impl\GameDaoImpl.java
-E:\project\pet-project\dal\src\main\java\by\kovalenko\util\ContextUtil.java

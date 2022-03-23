@@ -8,11 +8,13 @@ import by.kovalenko.service.UserService;
 import by.kovalenko.util.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-@Service("userService")
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
     public static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private final int MIN_LENGTH_OF_NAME_FIELDS = 2;
@@ -58,24 +60,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity findByUsernameAndPassword(String username, String password) throws UserNotFoundException {
-        UserEntity byUsernameAndPassword = userDao.findByUsernameAndPassword(username, password);
-        UserEntity user = new UserEntity();
-        if (byUsernameAndPassword != null){
-            user.setId(byUsernameAndPassword.getId());
-            user.setFirstname(byUsernameAndPassword.getFirstname());
-            user.setLastname(byUsernameAndPassword.getLastname());
-            user.setEmail(byUsernameAndPassword.getEmail());
-            user.setUsername(byUsernameAndPassword.getUsername());
-            user.setRole(byUsernameAndPassword.getRole());
-        } else {
-            try {
-                throw new UserNotFoundException();
-            } catch (UserNotFoundException e) {
-                e.printStackTrace();
-                throw new UserNotFoundException();
-            }
-        }
-        return user;
+    public UserEntity findByUsername(String username) {
+        return userDao.findByUsername(username);
+    }
+
+    @Override
+    public UserEntity findByUsernameAndPassword(String username, String password) {
+        return userDao.findByUsernameAndPassword(username, password);
     }
 }

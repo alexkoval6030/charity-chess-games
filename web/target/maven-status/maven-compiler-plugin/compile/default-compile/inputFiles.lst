@@ -1,2 +1,8 @@
-E:\project\pet-project\web\src\main\java\servlet\LoginServlet.java
-E:\project\pet-project\web\src\main\java\servlet\RegistrationServlet.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\controller\ControllerUserView.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\config\WebConfig.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\service\UserDetailsServerImpl.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\model\AuthPath.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\config\SecurityInitializer.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\config\WebApplicationInitializer.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\model\View.java
+E:\project\pet-project\web\src\main\java\by\kovalenko\config\SecurityConfig.java

@@ -39,6 +39,21 @@
                 <version>5.3.16</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>5.6.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>5.6.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>5.6.2</version>
+            </dependency>
+            <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>4.0.1</version>
@@ -46,18 +61,13 @@
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
-                <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-                <version>1.2.6</version>
+                <artifactId>javax.servlet.jsp.jstl</artifactId>
+                <version>1.2.5</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.persistence</groupId>
-                <artifactId>jakarta.persistence-api</artifactId>
-                <version>3.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.orm</groupId>
+                <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <version>6.0.0.Beta3</version>
+                <version>5.6.5.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.postgresql</groupId>
