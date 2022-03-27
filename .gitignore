@@ -4,3 +4,7 @@
 
 # Apache Maven
 /target
+
+.class
+.war
+.jar
