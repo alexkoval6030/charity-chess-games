@@ -5,6 +5,6 @@
 # Apache Maven
 /target
 
-.class
-.war
-.jar
+*.class
+*.war
+*.jar
