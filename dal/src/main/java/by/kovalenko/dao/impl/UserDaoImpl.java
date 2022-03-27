@@ -17,9 +17,10 @@ import javax.persistence.criteria.Root;
 @Transactional
 public class UserDaoImpl implements UserDao {
     @Override
-    public void save(UserEntity user) {
+    public UserEntity save(UserEntity user) {
         Session session = SessionUtil.openSession();
         session.save(user);
+        return user;
     }
 
     @Override

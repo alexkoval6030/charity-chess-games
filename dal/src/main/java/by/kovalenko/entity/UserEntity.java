@@ -30,9 +30,9 @@ public class UserEntity extends BaseEntity {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
-    @ManyToMany(mappedBy = "userGroup")
+    @ManyToMany(mappedBy = "userGroup") // Lazy
     private Set<GameEntity> games;
     @OneToMany
-    @JoinColumn(name = "game_id")
+    @JoinColumn(name = "game_id") // Lazy
     private List<GameEntity> createdGames;
 }

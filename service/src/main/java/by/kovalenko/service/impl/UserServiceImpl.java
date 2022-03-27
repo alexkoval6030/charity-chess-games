@@ -2,7 +2,6 @@ package by.kovalenko.service.impl;
 
 import by.kovalenko.dao.UserDao;
 import by.kovalenko.entity.UserEntity;
-import by.kovalenko.exception.UserNotFoundException;
 import by.kovalenko.exception.ValidationException;
 import by.kovalenko.service.UserService;
 import by.kovalenko.util.UserRole;
@@ -29,34 +28,65 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    // UUID - service or dao layer
     public UserEntity createUser(UUID id, String firstname, String lastname, String email, String username, String password) throws ValidationException {
+
+        validateMinLength("First name", firstname, MIN_LENGTH_OF_NAME_FIELDS);
+        validateMinLength("Last name", lastname, MIN_LENGTH_OF_NAME_FIELDS);
+        validateMinLength("User name", username, MIN_LENGTH_USERNAME);
+        validateMinLength("Password", password, MIN_LENGTH_PASSWORD);
+
+        validateMatches("Email", email, EMAIL_VALIDATION_PATTERN);
+
         UserEntity user = new UserEntity();
         user.setId(id);
-        if (firstname != null && firstname.length() >= MIN_LENGTH_OF_NAME_FIELDS
-                && lastname != null && lastname.length() >= MIN_LENGTH_OF_NAME_FIELDS){
-            user.setFirstname(firstname);
-            user.setLastname(lastname);
-        } else {
-            throw new ValidationException("First name and last name must be at least 2 characters");
-        }
-        if (email != null && EMAIL_VALIDATION_PATTERN.matcher(email).matches()){
-            user.setEmail(email);
-        } else {
-            throw new ValidationException("Email is not correct");
-        }
-        if (username != null && username.length() >= MIN_LENGTH_USERNAME){
-            user.setUsername(username);
-        } else {
-            throw new ValidationException("Username must be at least 2 characters");
-        }
-        if (password != null && password.length() >= MIN_LENGTH_PASSWORD){
-            user.setPassword(password);
-        } else {
-            throw new ValidationException("Password must be at least 7 characters");
-        }
         user.setRole(UserRole.USER);
+
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+
         userDao.save(user);
+
         return user;
+    }
+
+    /*@Override
+    public UserEntity createUser(String firstname, String lastname, String email, String username, String password) throws ValidationException {
+
+        validateMinLength("First name", firstname, MIN_LENGTH_OF_NAME_FIELDS);
+        validateMinLength("Last name", lastname, MIN_LENGTH_OF_NAME_FIELDS);
+        validateMinLength("User name", username, MIN_LENGTH_USERNAME);
+        validateMinLength("Password", password, MIN_LENGTH_PASSWORD);
+
+        validateMatches("Email", email, EMAIL_VALIDATION_PATTERN);
+
+        UserEntity user = new UserEntity();
+        user.setRole(UserRole.USER);
+
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+
+        return userDao.save(user);
+        // DAO should generate ID
+    }*/
+
+    private void validateMatches(String parameterName, String parameter, Pattern emailValidationPattern) throws ValidationException {
+        if (parameter == null || !emailValidationPattern.matcher(parameter).matches()) {
+            throw new ValidationException(parameterName + " is not correct.");
+        }
+
+    }
+
+    private void validateMinLength(String parameterName, String parameter, int minLength) throws ValidationException{
+        if (parameter == null || parameter.length() < minLength){
+            throw new ValidationException(parameterName + "must be at least " + minLength + "characters.");
+        }
     }
 
     @Override

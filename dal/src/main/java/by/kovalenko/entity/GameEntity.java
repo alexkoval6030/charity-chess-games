@@ -23,7 +23,7 @@ public class GameEntity extends BaseEntity {
     private GameStatusEntity gameStatus_id;
     @Column(name = "is_creator_win")
     private Boolean isCreatorWin;
-    @ManyToMany
+    @ManyToMany // Lazy
     @JoinTable(name = "game_user_link",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id")

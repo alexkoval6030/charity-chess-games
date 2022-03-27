@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="common/jstl-connect.jsp" %>
+<%@include file="../static/common/jstl-connect.jsp" %>
 <html lang="en">
 <head>
     <title>Charity Chess Games</title>
-    <%@include file="common/css-connect.jsp" %>
-    <%@include file="common/js-connect.jsp" %>
+    <%@include file="../static/common/css-connect.jsp" %>
+    <%@include file="../static/common/js-connect.jsp" %>
 </head>
 <body>
-<%@ include file="common/header.jsp" %>
+<%@ include file="../static/common/header.jsp" %>
 <div style="text-align: center; font-size: 50px">
     Sign in Charity Chess Games
 </div>
@@ -15,7 +15,7 @@
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-7">
             <div class="card px-5 py-5"><span class="circle"><i class="fa fa-check"></i></span>
-                <form action="<c:url value="/api/login"/>" method="post">
+                <form action="<c:url value="/login"/>" method="post">
                     <div class="form-floating mb-3">
                         <input type="text" id="floatingInputUsername" class="form-control" placeholder="Username" name="username">
                         <label for="floatingInputUsername">Username</label>
@@ -32,7 +32,7 @@
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
                 <div class="text-center mt-4"><span>You aren't a member?</span> <a
-                        href="<c:url value="/form/registration"/>"
+                        href="<c:url value="/registration"/>"
                         class="text-decoration-none">Registration</a>
                 </div>
             </div>

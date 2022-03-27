@@ -3,7 +3,7 @@ package by.kovalenko.dao;
 import by.kovalenko.entity.UserEntity;
 
 public interface UserDao {
-    void save(UserEntity user);
+    UserEntity save(UserEntity user);
 
     UserEntity findByEmail(String email);
 

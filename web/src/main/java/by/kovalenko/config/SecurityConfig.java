@@ -30,9 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .antMatchers("/", "/login", "/registration", "/page").permitAll()
+                .antMatchers("/", "/login", "/registration", "/page", "/style/*", "/js/*", "/img/*").permitAll()
                 .antMatchers("/admin").hasAuthority("ADMIN")
-                .antMatchers("/user").hasAuthority("USER")
+//                .antMatchers("/user").hasAuthority("USER")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")

@@ -17,6 +17,11 @@ public class ControllerUserView {
         this.userService = userService;
     }
 
+    @GetMapping(path = "/")
+    public String showLogin(Model model) {
+        return "login";
+    }
+
     @GetMapping(path = "/login")
     public String showBeforeLogin(Model model) {
         return "login";

@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/WEB-INF/jsp/common/jstl-connect.jsp" %>
+<%@include file="../static/common/jstl-connect.jsp" %>
 <html lang="en">
 <head>
     <title>Charity Chess Games</title>
-    <%@include file="common/css-connect.jsp" %>
-    <%@include file="common/js-connect.jsp" %>
+    <%@include file="../static/common/css-connect.jsp" %>
+    <%@include file="../static/common/js-connect.jsp" %>
 </head>
 <body>
-<%@ include file="common/header.jsp" %>
+<%@ include file="../static/common/header.jsp" %>
 <div style="text-align: center; font-size: 50px">
     Registration in Charity Chess Games
 </div>
@@ -15,7 +15,7 @@
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-7">
             <div class="card px-5 py-5"><span class="circle"><i class="fa fa-check"></i></span>
-                <form action="/api/registration" method="post">
+                <form action="/registration" method="post">
                     <div class="form-floating mb-3">
                         <input type="text" id="floatingInputFirstName" class="form-control"
                                placeholder="First name" name="firstname">
@@ -45,7 +45,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Registration</button>
                 </form>
-                <div class="text-center mt-4"><span>Already a member?</span> <a href="<c:url value="/form/login"/>"
+                <div class="text-center mt-4"><span>Already a member?</span> <a href="<c:url value="/login"/>"
                                                                                 class="text-decoration-none">Login</a>
                 </div>
             </div>
