@@ -1,7 +1,7 @@
 package by.kovalenko.service.impl;
 
-import by.kovalenko.dao.UserDao;
 import by.kovalenko.entity.UserEntity;
+import by.kovalenko.repositories.UserRepository;
 import by.kovalenko.util.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,16 +18,16 @@ import java.util.Set;
 @Service
 @Transactional
 public class UserDetailsServerImpl implements UserDetailsService {
-    private final UserDao userDao;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserDetailsServerImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserDetailsServerImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity findByUsername = userDao.findByUsername(username);
+        UserEntity findByUsername = userRepository.findByUsername(username);
         if (findByUsername == null) {
             throw new UsernameNotFoundException("User with specified name not found");
         }

@@ -1,7 +1,0 @@
-by\kovalenko\service\impl\UserServiceImpl.class
-by\kovalenko\config\ServiceConfig.class
-by\kovalenko\service\UserService.class
-by\kovalenko\exception\ValidationException.class
-by\kovalenko\service\impl\UserDetailsServerImpl.class
-by\kovalenko\exception\UserNotFoundException.class
-by\kovalenko\util\ServiceContextUtil.class

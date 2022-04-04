@@ -16,9 +16,9 @@ import java.util.UUID;
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(generator = "UUID")
-    //@GenericGenerator(
-    //        name = "UUID",
-    //        strategy = "org.hibernate.id.UUIDGenerator"
-    //)
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
     private UUID id;
 }

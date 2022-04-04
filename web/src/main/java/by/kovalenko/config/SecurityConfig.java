@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
@@ -22,9 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder encoder(){
-        return NoOpPasswordEncoder.getInstance();
-
-//        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -32,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests()
                 .antMatchers("/", "/login", "/registration", "/page", "/style/*", "/js/*", "/img/*").permitAll()
                 .antMatchers("/admin").hasAuthority("ADMIN")
-//                .antMatchers("/user").hasAuthority("USER")
+                .antMatchers("/user").hasAuthority("USER")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")

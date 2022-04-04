@@ -13,9 +13,9 @@ import java.util.Set;
 @AllArgsConstructor()
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"user", "userGroup"})
 public class GameEntity extends BaseEntity {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
     @OneToOne
@@ -23,7 +23,7 @@ public class GameEntity extends BaseEntity {
     private GameStatusEntity gameStatus_id;
     @Column(name = "is_creator_win")
     private Boolean isCreatorWin;
-    @ManyToMany // Lazy
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "game_user_link",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id")

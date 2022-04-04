@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan(basePackages = "by.kovalenko.service.impl")
+@ComponentScan(basePackages = {"by.kovalenko.service.impl", "by.kovalenko.mapper"})
 @EnableTransactionManagement
 @Import(DaoConfig.class)
 public class ServiceConfig {

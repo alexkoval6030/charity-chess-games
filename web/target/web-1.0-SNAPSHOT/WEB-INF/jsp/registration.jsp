@@ -15,7 +15,7 @@
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-7">
             <div class="card px-5 py-5"><span class="circle"><i class="fa fa-check"></i></span>
-                <form action="/registration" method="post">
+                <form action="<c:url value="/registration"/>" method="post">
                     <div class="form-floating mb-3">
                         <input type="text" id="floatingInputFirstName" class="form-control"
                                placeholder="First name" name="firstname">

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -20,12 +21,18 @@ import java.util.Objects;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = "by.kovalenko.dao.impl")
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
+@ComponentScan(basePackages = "by.kovalenko.repositories")
+@EnableJpaRepositories(basePackages = "by.kovalenko.repositories")
 public class DaoConfig {
-    @Autowired
     private Environment env;
+
+    @Autowired
+    public DaoConfig(Environment env) {
+        this.env = env;
+    }
+
 
     @Bean
     public DataSource dataSource(){
@@ -38,7 +45,7 @@ public class DaoConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManager(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
         entityManager.setPackagesToScan("by.kovalenko.entity");
@@ -61,7 +68,7 @@ public class DaoConfig {
     @Bean
     public PlatformTransactionManager transactionManager(){
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManager().getObject());
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
 
