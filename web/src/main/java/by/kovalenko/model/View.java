@@ -3,7 +3,7 @@ package by.kovalenko.model;
 public enum View {
     REGISTRATION("/registration.jsp"),
     LOGIN("/login.jsp"),
-    START_PAGE("/index.jsp"),
+    START_PAGE("/homePage.jsp"),
     ;
 
     private String path;

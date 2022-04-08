@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/user").hasAuthority("USER")
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/")
+                .and().formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/page")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and().csrf().disable();
         httpSecurity.userDetailsService(userDetailsService);

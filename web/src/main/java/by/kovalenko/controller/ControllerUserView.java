@@ -1,6 +1,6 @@
 package by.kovalenko.controller;
 
-import by.kovalenko.dto.UserDto;
+import by.kovalenko.dto.UserRequest;
 import by.kovalenko.exception.ValidationException;
 import by.kovalenko.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,32 +24,27 @@ public class ControllerUserView {
     }
 
     @GetMapping(path = "/login")
-    public String showBeforeLogin(Model model) {
+    public String showBeforeLogin() {
         return "login";
     }
 
-    @PostMapping(path = "/login")
-    public String showAfterLogin(Model model) {
-        return "index";
-    }
-
     @GetMapping(path = "/logout")
-    public String showAfterLogout(Model model) {
+    public String showAfterLogout() {
         return "login";
     }
 
     @GetMapping(path = "/page")
-    public String showPage(Model model) {
-        return "index";
+    public String showPage() {
+        return "homePage";
     }
 
     @GetMapping(path = "/registration")
-    public String showBeforeRegistration(Model model) {
+    public String showBeforeRegistration() {
         return "registration";
     }
 
     @PostMapping(path = "/registration")
-    public String showAfterRegistration(UserDto userDtoFromController, Model model) {
+    public String showAfterRegistration(UserRequest userDtoFromController, Model model) {
         try {
             userService.createUser(userDtoFromController);
         } catch (ValidationException e) {

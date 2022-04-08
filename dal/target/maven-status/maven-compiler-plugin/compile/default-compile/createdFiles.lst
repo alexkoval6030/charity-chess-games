@@ -1,0 +1,17 @@
+by\kovalenko\repositories\UserRepository.class
+by\kovalenko\entity\GameStatusEntity.class
+by\kovalenko\entity\UserEntity.class
+by\kovalenko\repositories\GameStatusRepository.class
+by\kovalenko\dao\impl\GameStatusDaoImpl.class
+by\kovalenko\dao\impl\GameDaoImpl.class
+by\kovalenko\util\GameStatusList.class
+by\kovalenko\dao\UserDao.class
+by\kovalenko\util\SessionUtil.class
+by\kovalenko\dao\GameDao.class
+by\kovalenko\entity\BaseEntity.class
+by\kovalenko\repositories\GameRepository.class
+by\kovalenko\dao\impl\UserDaoImpl.class
+by\kovalenko\util\UserRole.class
+by\kovalenko\entity\GameEntity.class
+by\kovalenko\dao\GameStatusDao.class
+by\kovalenko\config\DaoConfig.class

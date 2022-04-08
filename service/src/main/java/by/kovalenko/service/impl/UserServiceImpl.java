@@ -1,6 +1,7 @@
 package by.kovalenko.service.impl;
 
-import by.kovalenko.dto.UserDto;
+import by.kovalenko.dto.UserRequest;
+import by.kovalenko.dto.UserResponse;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.ValidationException;
 import by.kovalenko.mapper.UserMapper;
@@ -34,20 +35,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity createUser(UserDto userDtoFromController) throws ValidationException {
-        UserEntity userEntityFromService = userMapper.userDtoToUserEntity(validateUserDto(userDtoFromController));
+    public UserResponse createUser(UserRequest userRequestFromController) throws ValidationException {
+        UserRequest validateUserRequest = validateUserRequest(userRequestFromController);
+        UserEntity userEntityFromService = userMapper.userRequestToUserEntity(validateUserRequest);
         userEntityFromService.setRole(UserRole.USER);
-
-        return userRepository.save(userEntityFromService);
+        UserEntity save = userRepository.save(userEntityFromService);
+        return userMapper.userEntityToUserResponse(save);
     }
 
-    private UserDto validateUserDto(UserDto userDtoFromController) throws ValidationException {
-        validateMinLength("First name", userDtoFromController.getFirstname(), MIN_LENGTH_OF_NAME_FIELDS);
-        validateMinLength("Last name", userDtoFromController.getLastname(), MIN_LENGTH_OF_NAME_FIELDS);
-        validateMinLength("Username", userDtoFromController.getUsername(), MIN_LENGTH_USERNAME);
-        userDtoFromController.setPassword(validatePassword("Password", userDtoFromController.getPassword(), MIN_LENGTH_PASSWORD));
-        validateMatches(userDtoFromController.getEmail());
-        return userDtoFromController;
+    private UserRequest validateUserRequest(UserRequest userRequestFromController) throws ValidationException {
+        validateMinLength("First name", userRequestFromController.getFirstname(), MIN_LENGTH_OF_NAME_FIELDS);
+        validateMinLength("Last name", userRequestFromController.getLastname(), MIN_LENGTH_OF_NAME_FIELDS);
+        validateMinLength("Username", userRequestFromController.getUsername(), MIN_LENGTH_USERNAME);
+        userRequestFromController.setPassword(validatePassword("Password", userRequestFromController.getPassword(), MIN_LENGTH_PASSWORD));
+        validateMatches(userRequestFromController.getEmail());
+        return userRequestFromController;
     }
 
     private String validatePassword(String parameterName, String parameter, int minLength) throws ValidationException {
@@ -61,7 +63,6 @@ public class UserServiceImpl implements UserService {
         if (parameter == null || !UserServiceImpl.EMAIL_VALIDATION_PATTERN.matcher(parameter).matches()) {
             throw new ValidationException("Email" + " is not correct.");
         }
-
     }
 
     private void validateMinLength(String parameterName, String parameter, int minLength) throws ValidationException {
@@ -71,14 +72,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public UserResponse findByUsername(String username) {
+        UserEntity byUsername = userRepository.findByUsername(username);
+        return userMapper.userEntityToUserResponse(byUsername);
     }
 
     @Override
-    public UserEntity findByUsernameAndPassword(String username, String password) {
-        return userRepository.findByUsernameEqualsAndPasswordEquals(username, password);
+    public UserResponse findByUsernameAndPassword(UserRequest userDto) {
+        UserEntity userEntity = userMapper.userRequestToUserEntity(userDto);
+        UserEntity byUsernameEqualsAndPasswordEquals = userRepository.findByUsernameEqualsAndPasswordEquals(userEntity.getUsername(), userEntity.getPassword());
+        return userMapper.userEntityToUserResponse(byUsernameEqualsAndPasswordEquals);
     }
-
-
 }
