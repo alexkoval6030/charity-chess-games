@@ -28,11 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .antMatchers("/", "/login", "/registration", "/page", "/style/*", "/js/*", "/img/*").permitAll()
+                .antMatchers("/", "/login", "/registration", "/homePage", "/style/*", "/js/*", "/img/*").permitAll()
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .antMatchers("/user").hasAuthority("USER")
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/page")
+                .and().formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/homePage")
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and().csrf().disable();
         httpSecurity.userDetailsService(userDetailsService);

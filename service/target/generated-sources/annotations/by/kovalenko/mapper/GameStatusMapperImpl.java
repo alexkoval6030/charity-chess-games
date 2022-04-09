@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-04-09T14:11:36+0300",
+    date = "2022-04-09T20:15:09+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17 (Oracle Corporation)"
 )
 @Component
@@ -23,14 +23,14 @@ public class GameStatusMapperImpl implements GameStatusMapper {
         }
 
         UUID id = null;
+        GameStatusName gameStatusName = null;
         LocalDate date = null;
 
         id = gameStatusEntity.getId();
+        gameStatusName = gameStatusEntity.getGameStatusName();
         date = gameStatusEntity.getDate();
 
-        GameStatusName status = null;
-
-        GameStatusDto gameStatusDto = new GameStatusDto( id, status, date );
+        GameStatusDto gameStatusDto = new GameStatusDto( id, gameStatusName, date );
 
         return gameStatusDto;
     }
@@ -44,6 +44,7 @@ public class GameStatusMapperImpl implements GameStatusMapper {
         GameStatusEntity gameStatusEntity = new GameStatusEntity();
 
         gameStatusEntity.setId( gameStatusDto.getId() );
+        gameStatusEntity.setGameStatusName( gameStatusDto.getGameStatusName() );
         gameStatusEntity.setDate( gameStatusDto.getDate() );
 
         return gameStatusEntity;

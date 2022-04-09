@@ -20,6 +20,14 @@
                     <a href="<c:url value="/createGame"/>" class="btn btn-primary">Create</a>
                 </div>
             </div>
+            <div class="card" style="width: 14rem;">
+                <img src="img/createGame.jpg" class="card-img-top" alt="create game">
+                <div class="card-body">
+                    <h5 class="card-title">My game</h5>
+                    <p class="card-text">You can watch your games</p>
+                    <a href="<c:url value="/myGames"/>" class="btn btn-primary">My games</a>
+                </div>
+            </div>
         </div>
     </body>
 </html>

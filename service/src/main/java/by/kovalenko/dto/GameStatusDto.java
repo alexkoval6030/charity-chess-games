@@ -13,6 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class GameStatusDto {
     private UUID id;
-    private GameStatusName status;
+    private GameStatusName gameStatusName;
     private LocalDate date;
 }

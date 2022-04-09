@@ -1,8 +1,11 @@
 package by.kovalenko.service.impl;
 
+import by.kovalenko.dto.GameDto;
 import by.kovalenko.dto.UserDto;
+import by.kovalenko.entity.GameEntity;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.ValidationException;
+import by.kovalenko.mapper.GameMapper;
 import by.kovalenko.mapper.UserMapper;
 import by.kovalenko.repositories.UserRepository;
 import by.kovalenko.service.UserService;
@@ -12,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
@@ -24,12 +28,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final GameMapper gameMapper;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, GameMapper gameMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.gameMapper = gameMapper;
         this.passwordEncoder = passwordEncoder;
     }
 

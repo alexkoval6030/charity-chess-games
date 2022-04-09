@@ -33,7 +33,7 @@ public class ControllerUserView {
         return "login";
     }
 
-    @GetMapping(path = "/page")
+    @GetMapping(path = "/homePage")
     public String showPage() {
         return "homePage";
     }
