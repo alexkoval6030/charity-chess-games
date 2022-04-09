@@ -1,6 +1,6 @@
 package by.kovalenko.controller;
 
-import by.kovalenko.dto.UserRequest;
+import by.kovalenko.dto.UserDto;
 import by.kovalenko.exception.ValidationException;
 import by.kovalenko.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +44,9 @@ public class ControllerUserView {
     }
 
     @PostMapping(path = "/registration")
-    public String showAfterRegistration(UserRequest userDtoFromController, Model model) {
+    public String showAfterRegistration(UserDto userDto, Model model) {
         try {
-            userService.createUser(userDtoFromController);
+            userService.createUser(userDto);
         } catch (ValidationException e) {
             model.addAttribute("error", e.getMessage());
             return "registration";

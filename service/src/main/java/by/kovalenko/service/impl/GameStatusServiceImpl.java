@@ -1,12 +1,11 @@
 package by.kovalenko.service.impl;
 
-import by.kovalenko.dto.GameStatusRequest;
-import by.kovalenko.dto.GameStatusResponse;
+import by.kovalenko.dto.GameStatusDto;
 import by.kovalenko.entity.GameStatusEntity;
 import by.kovalenko.mapper.GameStatusMapper;
 import by.kovalenko.repositories.GameStatusRepository;
 import by.kovalenko.service.GameStatusService;
-import by.kovalenko.util.GameStatusList;
+import by.kovalenko.util.GameStatusName;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,10 +23,8 @@ public class GameStatusServiceImpl implements GameStatusService {
     }
 
     @Override
-    public GameStatusResponse createGameStatus() {
-        GameStatusRequest gameStatusRequest = new GameStatusRequest(GameStatusList.PLANNED, LocalDate.now());
-        GameStatusEntity gameStatusEntityFromService = gameStatusMapper.gameStatusRequestToGameStatusEntity(gameStatusRequest);
-        GameStatusEntity save = gameStatusRepository.save(gameStatusEntityFromService);
-        return gameStatusMapper.gameStatusEntityToGameStatusResponse(save);
+    public GameStatusEntity createGameStatus() {
+        return gameStatusRepository.save(
+                new GameStatusEntity(GameStatusName.PLANNED, LocalDate.now()));
     }
 }

@@ -1,7 +1,7 @@
 package by.kovalenko.service;
 
-import by.kovalenko.dto.GameStatusResponse;
+import by.kovalenko.entity.GameStatusEntity;
 
 public interface GameStatusService {
-    GameStatusResponse createGameStatus();
+    GameStatusEntity createGameStatus();
 }

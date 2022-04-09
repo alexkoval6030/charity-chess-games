@@ -15,7 +15,7 @@ public class ControllerUserCapability {
 
     @GetMapping(path = "/createGame")
     public String createGame(Authentication authentication){
-        gameService.crateGame(authentication);
+        gameService.createGame(authentication);
         return "create_game";
     }
 }

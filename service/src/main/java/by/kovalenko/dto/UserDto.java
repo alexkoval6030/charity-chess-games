@@ -1,11 +1,16 @@
 package by.kovalenko.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserRequest {
+public class UserDto {
+    private UUID id;
     private String firstname;
     private String lastname;
     private String email;

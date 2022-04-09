@@ -1,15 +1,12 @@
 package by.kovalenko.mapper;
 
-import by.kovalenko.dto.UserRequest;
-import by.kovalenko.dto.UserResponse;
+import by.kovalenko.dto.UserDto;
 import by.kovalenko.entity.UserEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    UserResponse userEntityToUserResponse(UserEntity userEntity);
+    UserDto userEntityToUserDto(UserEntity userEntity);
 
-    UserEntity userRequestToUserEntity(UserRequest userRequest);
-
-    UserEntity userResponseToUserEntity(UserResponse userResponse);
+    UserEntity userDtoToUserEntity(UserDto userDto);
 }

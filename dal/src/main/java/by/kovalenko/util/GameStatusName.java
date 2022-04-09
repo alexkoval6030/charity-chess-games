@@ -1,6 +1,6 @@
 package by.kovalenko.util;
 
-public enum GameStatusList {
+public enum GameStatusName {
     PLANNED,
     DURING,
     FINISHED,

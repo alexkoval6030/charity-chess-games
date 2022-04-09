@@ -1,6 +1,6 @@
 package by.kovalenko.entity;
 
-import by.kovalenko.util.GameStatusList;
+import by.kovalenko.util.GameStatusName;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,9 +15,9 @@ import java.time.LocalDate;
 @Setter
 @ToString
 public class GameStatusEntity extends BaseEntity{
-    @Column(name = "status")
+    @Column(name = "game_status_name")
     @Enumerated(EnumType.STRING)
-    private GameStatusList status;
+    private GameStatusName gameStatusName;
     @Column(name = "date")
     private LocalDate date;
 }

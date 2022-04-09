@@ -3,7 +3,6 @@ package by.kovalenko.entity;
 import by.kovalenko.util.UserRole;
 
 import lombok.*;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,9 +30,10 @@ public class UserEntity extends BaseEntity {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role;
-    @ManyToMany(mappedBy = "userGroup", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private Set<GameEntity> games;
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_id")
+    @OneToMany(
+            mappedBy = "creator",
+            fetch = FetchType.LAZY)
     private List<GameEntity> createdGames;
 }
