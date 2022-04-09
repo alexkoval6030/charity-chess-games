@@ -4,6 +4,7 @@
 
 # Apache Maven
 /target
+*/target
 
 *.class
 *.war
