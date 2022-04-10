@@ -4,6 +4,7 @@ import by.kovalenko.dto.GameDto;
 import by.kovalenko.entity.GameEntity;
 import org.mapstruct.Mapper;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
@@ -13,4 +14,6 @@ public interface GameMapper {
     GameEntity gameDtoToGameEntity(GameDto gameDto);
 
     List<GameDto> listGameEntityToListGameDto(List<GameEntity> gameEntityList);
+
+    HashSet<GameDto> hashSetGameEntityToHashSetGameDto(HashSet<GameEntity> gameEntityHashSet);
 }

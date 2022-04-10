@@ -4,4 +4,5 @@ public enum GameStatusName {
     PLANNED,
     DURING,
     FINISHED,
+    CANCELED
 }

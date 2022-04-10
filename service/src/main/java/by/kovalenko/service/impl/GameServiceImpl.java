@@ -1,7 +1,6 @@
 package by.kovalenko.service.impl;
 
 import by.kovalenko.dto.GameDto;
-import by.kovalenko.dto.UserDto;
 import by.kovalenko.entity.GameEntity;
 import by.kovalenko.entity.GameStatusEntity;
 import by.kovalenko.entity.UserEntity;
@@ -12,10 +11,13 @@ import by.kovalenko.repositories.UserRepository;
 import by.kovalenko.service.GameService;
 import by.kovalenko.service.GameStatusService;
 import by.kovalenko.service.UserService;
+import by.kovalenko.util.GameStatusName;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -56,5 +58,22 @@ public class GameServiceImpl implements GameService {
     public List<GameDto> findAllCreatedGames(Authentication authentication) {
         List<GameEntity> gameEntityList = gameRepository.findAllByCreatorUsername(authentication.getName());
         return gameMapper.listGameEntityToListGameDto(gameEntityList);
+    }
+
+    @Override
+    public HashSet<GameDto> findAllAttachedGames(Authentication authentication) {
+        HashSet<GameEntity> gameEntityHashSet = gameRepository.findAllByUsersUsername(authentication.getName());
+        return gameMapper.hashSetGameEntityToHashSetGameDto(gameEntityHashSet);
+    }
+
+    @Override
+    public List<GameDto> findAllByGameStatusAndCreatorIsNot(GameStatusName gameStatusName, Authentication authentication) {
+        List<GameEntity> gameEntityList = gameRepository.findAllByGameStatusGameStatusNameAndCreatorUsernameIsNot(gameStatusName, authentication.getName());
+        return gameMapper.listGameEntityToListGameDto(gameEntityList);
+    }
+
+    @Override
+    public List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, LocalDateTime createdDateTime) {
+        return gameRepository.findAllByGameStatusGameStatusNameAndGameStatusDateBefore(gameStatusName, createdDateTime);
     }
 }

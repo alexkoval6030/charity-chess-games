@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -14,5 +14,5 @@ import java.util.UUID;
 public class GameStatusDto {
     private UUID id;
     private GameStatusName gameStatusName;
-    private LocalDate date;
+    private LocalDateTime date;
 }

@@ -1,8 +1,6 @@
 package by.kovalenko.service.impl;
 
-import by.kovalenko.dto.GameDto;
 import by.kovalenko.dto.UserDto;
-import by.kovalenko.entity.GameEntity;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.ValidationException;
 import by.kovalenko.mapper.GameMapper;
@@ -15,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
