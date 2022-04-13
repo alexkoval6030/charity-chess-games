@@ -1,5 +1,5 @@
 
-http://ec2-44-201-198-61.compute-1.amazonaws.com:8080/charity_chess_games/[Charity chess games]
+http://ec2-44-201-198-61.compute-1.amazonaws.com:8080/ccg/[Charity chess games]
 
 == Description
 
