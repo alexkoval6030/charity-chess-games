@@ -13,37 +13,36 @@
         </div>
         <div>
             <div class="container">
-                <form action="<c:out value="/joinAvailableGames"/>" method="post">
+                <form action="<c:url value="/listAvailableGames"/>" method="post">
                     <table class="table table-dark table-striped">
                         <thead>
                             <tr>
+                                <th scope="col">№</th>
                                 <th scope="col">Game id</th>
                                 <th scope="col">Game creator</th>
                                 <th scope="col">Game creation date</th>
                                 <th scope="col">Game status</th>
-                                <th scope="col">Join</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="listAvailableGames" items="${listAvailableGames}">
+                            <c:forEach var="availableGame" items="${listAvailableGames}" varStatus="status">
                                 <tr>
-                                    <td>${listAvailableGames.id}</td>
-                                    <td>${listAvailableGames.creator.username}</td>
-                                    <td>${listAvailableGames.gameStatus.date}</td>
-                                    <td>${listAvailableGames.gameStatus.gameStatusName}</td>
+                                    <td>${status.count}</td>
                                     <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        </div>
+                                        <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${availableGame.id}"/>"
+                                           role="button">${availableGame.id}</a>
+                                    </td>
+                                    <td>${availableGame.creator.username}</td>
+                                    <td>${availableGame.gameStatus.date}</td>
+                                    <td>${availableGame.gameStatus.gameStatusName}</td>
+                                    <td>
+                                        <a class="btn btn-dark" href="<c:url value="/joinGame/${availableGame.id}"/>" role="button">Join</a>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
                 </form>
-                <div class="d-grid gap-2">
-                    <button class="btn btn-dark btn-lg" type="submit">Join selected games</button>
-                </div>
             </div>
         </div>
         <div style="text-align: center; font-size: 30px">
@@ -51,11 +50,11 @@
         </div>
         <div class="container">
             <div class="btn-group d-grid d-md-flex" role="group" aria-label="Basic example">
-                <a class="btn btn-outline-dark" href="<c:url value="/homePage"/>" role="button">Homepage</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/viewAllCreatedGames"/>" role="button">View all created games</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/homePage"/>" role="button">View a list of all the games you’ve joined</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/myGames"/>" role="button">View all games</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/homePage"/>" role="button">See the history of games</a>
+                <a class="btn btn-dark" href="<c:url value="/homePage"/>" role="button">Homepage</a>
+                <a class="btn btn-dark" href="<c:url value="/viewAllCreatedGames"/>" role="button">View all created games</a>
+                <a class="btn btn-dark" href="<c:url value="/viewAllAttachedGames"/>" role="button">View a list of all the games you’ve joined</a>
+                <a class="btn btn-dark" href="<c:url value="/myGames"/>" role="button">View all games</a>
+                <a class="btn btn-dark" href="<c:url value="/homePage"/>" role="button">See the history of games</a>
             </div>
         </div>
     </body>

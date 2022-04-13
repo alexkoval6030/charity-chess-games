@@ -1,6 +1,7 @@
 package by.kovalenko.service.impl;
 
 import by.kovalenko.dto.GameDto;
+import by.kovalenko.dto.UserDto;
 import by.kovalenko.entity.GameEntity;
 import by.kovalenko.entity.GameStatusEntity;
 import by.kovalenko.entity.UserEntity;
@@ -17,8 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -55,6 +55,23 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public GameDto addUserToGame(Authentication authentication, UUID id) {
+        Optional<GameEntity> game = gameRepository.findById(id);
+        Set<UserEntity> users = game.get().getUsers();
+        users.add(userRepository.findByUsername(authentication.getName()));
+        return gameMapper.gameEntityToGameDto(game.get());
+    }
+
+    @Override
+    public GameDto findByGameId(UUID id) {
+        GameEntity gameEntity = gameRepository.findById(id).get();
+        gameEntity.getCreator();
+        gameEntity.getUsers();
+
+        return gameMapper.gameEntityToGameDto(gameEntity);
+    }
+
+    @Override
     public List<GameDto> findAllCreatedGames(Authentication authentication) {
         List<GameEntity> gameEntityList = gameRepository.findAllByCreatorUsername(authentication.getName());
         return gameMapper.listGameEntityToListGameDto(gameEntityList);
@@ -68,7 +85,8 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<GameDto> findAllByGameStatusAndCreatorIsNot(GameStatusName gameStatusName, Authentication authentication) {
-        List<GameEntity> gameEntityList = gameRepository.findAllByGameStatusGameStatusNameAndCreatorUsernameIsNot(gameStatusName, authentication.getName());
+        UserEntity userEntity = userRepository.findByUsername(authentication.getName());
+        List<GameEntity> gameEntityList = gameRepository.findAllByGameStatusGameStatusNameAndCreatorUsernameIsNotAndUsersIsNotContaining(gameStatusName, userEntity.getUsername(), userEntity);
         return gameMapper.listGameEntityToListGameDto(gameEntityList);
     }
 
@@ -76,4 +94,12 @@ public class GameServiceImpl implements GameService {
     public List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, LocalDateTime createdDateTime) {
         return gameRepository.findAllByGameStatusGameStatusNameAndGameStatusDateBefore(gameStatusName, createdDateTime);
     }
+
+    @Override
+    public HashSet<UserDto> findAllParticipants(UUID id) {
+        Optional<GameEntity> game = gameRepository.findById(id);
+        Set<UserEntity> users = game.get().getUsers();
+        return userMapper.setUserEntityToSetUserDto(users);
+    }
+
 }

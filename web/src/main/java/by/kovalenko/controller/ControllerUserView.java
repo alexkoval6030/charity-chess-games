@@ -38,6 +38,9 @@ public class ControllerUserView {
         return "homePage";
     }
 
+    @GetMapping(path = "/partners")
+    public String showPartners() { return "partners"; }
+
     @GetMapping(path = "/registration")
     public String showBeforeRegistration() {
         return "registration";

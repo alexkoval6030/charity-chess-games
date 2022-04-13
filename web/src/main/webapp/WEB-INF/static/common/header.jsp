@@ -11,10 +11,10 @@
                         <a class="nav-link active" aria-current="page" href="<c:url value="/homePage"/>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                        <a class="nav-link active" aria-current="page" href="https://github.com/JD2-86/pet-project-kovalenko">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Partners</a>
+                        <a class="nav-link active" aria-current="page" href="<c:url value="/partners"/>">Partners</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

@@ -9,35 +9,42 @@
     <body>
         <%@ include file="../static/common/header.jsp" %>
         <div style="text-align: center; font-size: 50px">
-            The games you created
+            Participants table - game(${game.id})
         </div>
         <div>
             <div class="container">
                 <table class="table table-dark table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Game id</th>
-                            <th scope="col">Game creation date</th>
-                            <th scope="col">Game status</th>
-                            <th scope="col">Result of the game</th>
+                            <th scope="col">№</th>
+                            <th scope="col">Lastname</th>
+                            <th scope="col">Firstname</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="createdGame" items="${allCreatedGames}">
+                    <tr>
+                        <td colspan="5">CREATOR</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>${game.creator.lastname}</td>
+                        <td>${game.creator.firstname}</td>
+                        <td>${game.creator.username}</td>
+                        <td>${game.creator.email}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">PARTICIPANTS</td>
+                    </tr>
+
+                        <c:forEach var="participant" items="${game.users}" varStatus="status">
                             <tr>
-                                <td>
-                                    <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${createdGame.id}"/>"
-                                       role="button">${createdGame.id}</a>
-                                </td>
-                                <td>${createdGame.gameStatus.date}</td>
-                                <td>${createdGame.gameStatus.gameStatusName}</td>
-                                <td><c:if test="${createdGame.isCreatorWin == true}">
-                                        You win
-                                    </c:if>
-                                    <c:if test="${createdGame.isCreatorWin == false}">
-                                        You lose
-                                    </c:if>
-                                </td>
+                                <td>${status.count}</td>
+                                <td>${participant.lastname}</td>
+                                <td>${participant.firstname}</td>
+                                <td>${participant.username}</td>
+                                <td>${participant.email}</td>
                             </tr>
                         </c:forEach>
                     </tbody>

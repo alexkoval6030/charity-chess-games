@@ -1,6 +1,7 @@
 package by.kovalenko.repositories;
 
 import by.kovalenko.entity.GameEntity;
+import by.kovalenko.entity.UserEntity;
 import by.kovalenko.util.GameStatusName;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,7 +16,7 @@ public interface GameRepository extends JpaRepository<GameEntity, UUID> {
 
     HashSet<GameEntity> findAllByUsersUsername(String username);
 
-    List<GameEntity> findAllByGameStatusGameStatusNameAndCreatorUsernameIsNot(GameStatusName gameStatusName, String username);
+    List<GameEntity> findAllByGameStatusGameStatusNameAndCreatorUsernameIsNotAndUsersIsNotContaining(GameStatusName gameStatusName, String username, UserEntity userEntity);
 
     List<GameEntity> findAllByGameStatusGameStatusNameAndGameStatusDateBefore(GameStatusName gameStatusName, LocalDateTime createdDateTime);
 }

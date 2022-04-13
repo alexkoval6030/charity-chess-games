@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="../static/common/jstl-connect.jsp" %>
 <html lang="en">
     <head>
@@ -24,16 +25,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="allCreatedGames" items="${allCreatedGames}">
+                        <c:forEach var="createdGame" items="${allCreatedGames}">
                             <tr>
-                                <td>${allCreatedGames.id}</td>
-                                <td>${allCreatedGames.gameStatus.date}</td>
-                                <td>${allCreatedGames.gameStatus.gameStatusName}</td>
-                                <td>${allCreatedGames.creator.username}</td>
-                                <td><c:if test="${allCreatedGames.isCreatorWin == true}">
+                                <td>
+                                    <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${createdGame.id}"/>"
+                                       role="button">${createdGame.id}</a>
+                                </td>
+                                <td>${createdGame.gameStatus.date}</td>
+                                <td>${createdGame.gameStatus.gameStatusName}</td>
+                                <td>${createdGame.creator.username}</td>
+                                <td><c:if test="${createdGame.isCreatorWin == true}">
                                         You win
                                     </c:if>
-                                    <c:if test="${allCreatedGames.isCreatorWin == false}">
+                                    <c:if test="${createdGame.isCreatorWin == false}">
                                         You lose
                                     </c:if>
                                 </td>
@@ -59,16 +63,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="allAttachedGames" items="${allAttachedGames}">
+                    <c:forEach var="attachedGame" items="${allAttachedGames}">
                         <tr>
-                            <td>${allAttachedGames.id}</td>
-                            <td>${allAttachedGames.gameStatus.date}</td>
-                            <td>${allAttachedGames.gameStatus.gameStatusName}</td>
-                            <td>${allAttachedGames.creator.username}</td>
-                            <td><c:if test="${allCreatedGames.isCreatorWin == true}">
+                            <td>
+                                <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${attachedGame.id}"/>"
+                                   role="button">${attachedGame.id}</a>
+                            </td>
+                            <td>${attachedGame.gameStatus.date}</td>
+                            <td>${attachedGame.gameStatus.gameStatusName}</td>
+                            <td>${attachedGame.creator.username}</td>
+                            <td><c:if test="${attachedGame.isCreatorWin == true}">
                                     You lose
                                 </c:if>
-                                <c:if test="${allCreatedGames.isCreatorWin == false}">
+                                <c:if test="${attachedGame.isCreatorWin == false}">
                                     You win
                                 </c:if>
                             </td>
@@ -83,11 +90,11 @@
         </div>
         <div class="container">
             <div class="btn-group d-grid d-md-flex" role="group" aria-label="Basic example">
-                <a class="btn btn-outline-dark" href="<c:url value="/homePage"/>" role="button">Homepage</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/viewAllCreatedGames"/>" role="button">View all created games</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/homePage"/>" role="button">View a list of all the games you’ve joined</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/myGames"/>" role="button">View all games</a>
-                <a class="btn btn-outline-dark" href="<c:url value="/homePage"/>" role="button">See the history of games</a>
+                <a class="btn btn-dark" href="<c:url value="/homePage"/>" role="button">Homepage</a>
+                <a class="btn btn-dark" href="<c:url value="/viewAllCreatedGames"/>" role="button">View all created games</a>
+                <a class="btn btn-dark" href="<c:url value="/viewAllAttachedGames"/>" role="button">View a list of all the games you’ve joined</a>
+                <a class="btn btn-dark" href="<c:url value="/myGames"/>" role="button">View all games</a>
+                <a class="btn btn-dark" href="<c:url value="/homePage"/>" role="button">See the history of games</a>
             </div>
         </div>
     </body>

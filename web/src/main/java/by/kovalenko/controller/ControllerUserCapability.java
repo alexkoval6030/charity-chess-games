@@ -1,6 +1,8 @@
 package by.kovalenko.controller;
 
 import by.kovalenko.dto.GameDto;
+import by.kovalenko.dto.UserDto;
+import by.kovalenko.entity.GameEntity;
 import by.kovalenko.mapper.UserMapper;
 import by.kovalenko.service.GameService;
 import by.kovalenko.service.UserService;
@@ -8,11 +10,12 @@ import by.kovalenko.util.GameStatusName;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 @Controller
 public class ControllerUserCapability {
@@ -58,8 +61,23 @@ public class ControllerUserCapability {
         return "listAvailableGames";
     }
 
-    @PostMapping(path = "/joinAvailableGames")
-    public String joinAvailableGames(){
-        return "myGames";
+    @GetMapping(path = "/viewAllAttachedGames")
+    public String viewAllAttachedGames(Authentication authentication, Model model){
+        Set<GameDto> allAttachedGames = gameService.findAllAttachedGames(authentication);
+        model.addAttribute("allAttachedGames", allAttachedGames);
+        return "attachedGames";
+    }
+
+    @GetMapping(path = "/viewParticipants")
+    public String viewParticipants(@RequestParam("gameId") UUID id, Model model){
+        GameDto gameDto = gameService.findByGameId(id);
+        model.addAttribute("game", gameDto);
+        return "/participantTable";
+    }
+
+    @GetMapping(path = "/joinGame/{gameId}")
+    public String joinAvailableGames(Authentication authentication, @PathVariable("gameId") UUID id){
+        gameService.addUserToGame(authentication, id);
+        return "redirect:/listAvailableGames";
     }
 }

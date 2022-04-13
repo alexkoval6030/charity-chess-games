@@ -5,7 +5,9 @@ import by.kovalenko.dto.UserDto;
 import by.kovalenko.entity.UserEntity;
 import org.mapstruct.Mapper;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -13,4 +15,5 @@ public interface UserMapper {
 
     UserEntity userDtoToUserEntity(UserDto userDto);
 
+    HashSet<UserDto> setUserEntityToSetUserDto(Set<UserEntity> userEntitySet);
 }
