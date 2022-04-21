@@ -2,21 +2,25 @@ package by.kovalenko.service.impl;
 
 import by.kovalenko.dto.UserDto;
 import by.kovalenko.entity.UserEntity;
+import by.kovalenko.entity.WalletEntity;
 import by.kovalenko.exception.ValidationException;
-import by.kovalenko.mapper.GameMapper;
 import by.kovalenko.mapper.UserMapper;
 import by.kovalenko.repositories.UserRepository;
+import by.kovalenko.repositories.WalletRepository;
 import by.kovalenko.service.UserService;
 import by.kovalenko.util.UserRole;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     public static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private final int MIN_LENGTH_OF_NAME_FIELDS = 2;
@@ -25,22 +29,16 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final GameMapper gameMapper;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, GameMapper gameMapper, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-        this.gameMapper = gameMapper;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final WalletRepository walletRepository;
 
     @Override
     public UserDto createUser(UserDto userDto) throws ValidationException {
         validateUserDto(userDto);
         UserEntity userEntity = userMapper.userDtoToUserEntity(userDto);
         userEntity.setRole(UserRole.USER);
+        WalletEntity wallet = walletRepository.save(new WalletEntity());
+        userEntity.setWallet(wallet);
         return userMapper.userEntityToUserDto(userRepository.save(userEntity));
     }
 
@@ -72,8 +70,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public UserDto findById(UUID id) {
+        Optional<UserEntity> userEntity = userRepository.findById(id);
+        return userMapper.userEntityToUserDto(userEntity.get());
+    }
+
+    @Override
+    public UserDto findByUsername(String username) {
+        return userMapper.userEntityToUserDto(userRepository.findByUsername(username));
     }
 
     @Override

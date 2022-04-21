@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class GameStatusEntity extends BaseEntity{
+public class GameStatusEntity extends BaseEntity {
     @Column(name = "game_status_name")
     @Enumerated(EnumType.STRING)
     private GameStatusName gameStatusName;

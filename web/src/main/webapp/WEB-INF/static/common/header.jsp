@@ -33,8 +33,17 @@
             <div class="collapse navbar-collapse navbar-light justify-content-end" id="right-menu">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><c:out
-                                value="${sessionScope.user.firstname} ${sessionScope.user.lastname}"/></a>
+                        <c:if test="${sessionScope.user != null}">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+                                <c:out value="${sessionScope.user.firstname} ${sessionScope.user.lastname}"/></a>
+                        </c:if>
+                    </li>
+                    <li class="nav-item">
+                        <c:if test="${sessionScope.wallet != null}">
+                            <a href="<c:url value="/addFunds"/>"
+                               class="btn btn-dark" tabindex="-1" role="button" aria-disabled="true">
+                                    ${sessionScope.wallet.availableMoney}$ | Add funds</a>
+                        </c:if>
                     </li>
                     <li class="nav-item">
                         <a href="<c:url value="/logout"/>"

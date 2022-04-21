@@ -2,10 +2,10 @@ package by.kovalenko.service;
 
 import by.kovalenko.dto.GameDto;
 import by.kovalenko.dto.UserDto;
+import by.kovalenko.dto.WalletDto;
 import by.kovalenko.entity.GameEntity;
-import by.kovalenko.entity.UserEntity;
+import by.kovalenko.exception.InsufficientFundsException;
 import by.kovalenko.util.GameStatusName;
-import org.springframework.security.core.Authentication;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -13,17 +13,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface GameService {
-    GameDto createGame(Authentication authentication);
+    GameDto createGame(UUID id, WalletDto walletDto, double creationBet) throws InsufficientFundsException;
 
-    GameDto addUserToGame(Authentication authentication, UUID id);
+    GameDto addUserToGame(UserDto userDto, WalletDto walletDto, UUID id, double connectionBet) throws InsufficientFundsException;
 
     GameDto findByGameId(UUID id);
 
-    List<GameDto> findAllCreatedGames(Authentication authentication);
+    List<GameDto> findAllCreatedGames(UserDto userDto);
 
-    HashSet<GameDto> findAllAttachedGames(Authentication authentication);
+    HashSet<GameDto> findAllAttachedGames(UserDto userDto);
 
-    List<GameDto> findAllByGameStatusAndCreatorIsNot(GameStatusName gameStatusName, Authentication authentication);
+    List<GameDto> findAllByGameStatusAndCreatorIsNot(GameStatusName gameStatusName, UserDto userDto);
 
     HashSet<UserDto> findAllParticipants(UUID id);
 

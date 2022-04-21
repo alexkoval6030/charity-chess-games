@@ -13,7 +13,6 @@
         </div>
         <div>
             <div class="container">
-                <form action="<c:url value="/listAvailableGames"/>" method="post">
                     <table class="table table-dark table-striped">
                         <thead>
                             <tr>
@@ -22,6 +21,7 @@
                                 <th scope="col">Game creator</th>
                                 <th scope="col">Game creation date</th>
                                 <th scope="col">Game status</th>
+                                <th scope="col">Your bet</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,13 +36,18 @@
                                     <td>${availableGame.gameStatus.date}</td>
                                     <td>${availableGame.gameStatus.gameStatusName}</td>
                                     <td>
-                                        <a class="btn btn-dark" href="<c:url value="/joinGame/${availableGame.id}"/>" role="button">Join</a>
+                                        <form action="<c:url value="/joinGame/${availableGame.id}"/>">
+                                            <div class="input-group">
+                                                <input type="text" name="connectionBet" value="0">
+                                                <span class="input-group-text">$</span>
+                                                <button type="submit" class="btn btn-dark">Join</button>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
-                </form>
             </div>
         </div>
         <div style="text-align: center; font-size: 30px">

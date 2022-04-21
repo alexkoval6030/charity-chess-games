@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = {"creator", "users"})
+@ToString(exclude = {"creator", "users", "stakes"})
 public class GameEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
@@ -25,10 +26,13 @@ public class GameEntity extends BaseEntity {
     private Boolean isCreatorWin;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_game_link",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "game_id")
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<UserEntity> users = new HashSet<>();
+
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
+    private List<StakeEntity> stakes;
 
     public GameEntity(UserEntity creator, GameStatusEntity gameStatus) {
         this.creator = creator;

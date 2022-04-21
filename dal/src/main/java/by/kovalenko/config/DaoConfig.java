@@ -35,7 +35,7 @@ public class DaoConfig {
 
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("jdbc.driver")));
         dataSource.setUrl(env.getProperty("jdbc.url"));
@@ -45,7 +45,7 @@ public class DaoConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
         entityManager.setPackagesToScan("by.kovalenko.entity");
@@ -56,7 +56,7 @@ public class DaoConfig {
     }
 
     @Bean
-    public Properties hibernateProperties(){
+    public Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
@@ -66,14 +66,14 @@ public class DaoConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(){
+    public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionProcessor(){
+    public PersistenceExceptionTranslationPostProcessor exceptionProcessor() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 }

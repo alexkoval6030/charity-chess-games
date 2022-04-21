@@ -1,7 +1,6 @@
 package by.kovalenko.entity;
 
 import by.kovalenko.util.UserRole;
-
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = {"createdGames", "games"})
+@ToString(exclude = {"createdGames", "games", "stakes"})
 public class UserEntity extends BaseEntity {
     @Column(name = "firstname")
     private String firstname;
@@ -36,4 +35,9 @@ public class UserEntity extends BaseEntity {
             mappedBy = "creator",
             fetch = FetchType.LAZY)
     private List<GameEntity> createdGames;
+    @OneToOne
+    @JoinColumn(name = "wallet_id")
+    private WalletEntity wallet;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<StakeEntity> stakes;
 }

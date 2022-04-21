@@ -1,12 +1,10 @@
 package by.kovalenko.mapper;
 
-import by.kovalenko.dto.GameDto;
 import by.kovalenko.dto.UserDto;
 import by.kovalenko.entity.UserEntity;
 import org.mapstruct.Mapper;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Mapper(componentModel = "spring")
