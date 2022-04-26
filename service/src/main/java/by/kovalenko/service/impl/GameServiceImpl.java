@@ -11,9 +11,14 @@ import by.kovalenko.mapper.GameMapper;
 import by.kovalenko.mapper.UserMapper;
 import by.kovalenko.repositories.GameRepository;
 import by.kovalenko.repositories.UserRepository;
-import by.kovalenko.service.*;
+import by.kovalenko.service.GameService;
+import by.kovalenko.service.GameStatusService;
+import by.kovalenko.service.StakeService;
+import by.kovalenko.service.WalletService;
 import by.kovalenko.util.GameStatusName;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +32,6 @@ public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
     private final UserRepository userRepository;
     private final GameStatusService gameStatusService;
-    private final UserService userService;
     private final StakeService stakeService;
     private final WalletService walletService;
     private final GameMapper gameMapper;
@@ -70,26 +74,36 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<GameDto> findAllCreatedGames(UserDto userDto) {
-        List<GameEntity> gameEntityList = gameRepository.findAllByCreatorUsername(userDto.getUsername());
-        return gameMapper.listGameEntityToListGameDto(gameEntityList);
+    public Page<GameDto> findAllCreatedGames(UserDto userDto, Pageable pageable) {
+        Page<GameEntity> gameEntityList = gameRepository.findAllByCreatorUsername(userDto.getUsername(), pageable);
+        return gameEntityList.map(gameMapper::gameEntityToGameDto);
     }
 
     @Override
-    public HashSet<GameDto> findAllAttachedGames(UserDto userDto) {
-        HashSet<GameEntity> gameEntityHashSet = gameRepository.findAllByUsersUsername(userDto.getUsername());
-        return gameMapper.hashSetGameEntityToHashSetGameDto(gameEntityHashSet);
+    public Page<GameDto> findAllAttachedGames(UserDto userDto, Pageable pageable) {
+        Page<GameEntity> gameEntityList = gameRepository.findAllByUsersUsername(userDto.getUsername(), pageable);
+        return gameEntityList.map(gameMapper::gameEntityToGameDto);
     }
 
     @Override
-    public List<GameDto> findAllByGameStatusAndCreatorIsNot(GameStatusName gameStatusName, UserDto userDto) {
+    public Page<GameDto> findAllByGameStatusAndCreatorIsNot(
+            GameStatusName gameStatusName,
+            UserDto userDto,
+            Pageable pageable
+    ) {
         UserEntity userEntity = userMapper.userDtoToUserEntity(userDto);
-        List<GameEntity> gameEntityList = gameRepository.findAllByGameStatusGameStatusNameAndCreatorUsernameIsNotAndUsersIsNotContaining(gameStatusName, userEntity.getUsername(), userEntity);
-        return gameMapper.listGameEntityToListGameDto(gameEntityList);
+
+        Page<GameEntity> gameEntityList = gameRepository.
+                findAllByGameStatusGameStatusNameAndCreatorUsernameIsNotAndUsersIsNotContaining(
+                        gameStatusName,
+                        userEntity.getUsername(),
+                        userEntity,
+                        pageable);
+        return gameEntityList.map(gameMapper::gameEntityToGameDto);
     }
 
     @Override
-    public List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, LocalDateTime createdDateTime) {
+    public List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, Date createdDateTime) {
         return gameRepository.findAllByGameStatusGameStatusNameAndGameStatusDateBefore(gameStatusName, createdDateTime);
     }
 

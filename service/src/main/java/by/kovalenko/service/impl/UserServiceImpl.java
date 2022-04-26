@@ -86,4 +86,9 @@ public class UserServiceImpl implements UserService {
         UserEntity byUsernameEqualsAndPasswordEquals = userRepository.findByUsernameAndPassword(userEntity.getUsername(), userEntity.getPassword());
         return userMapper.userEntityToUserDto(byUsernameEqualsAndPasswordEquals);
     }
+
+    @Override
+    public UserEntity findByWalletId(UUID walletId) {
+        return userRepository.findByWalletId(walletId);
+    }
 }

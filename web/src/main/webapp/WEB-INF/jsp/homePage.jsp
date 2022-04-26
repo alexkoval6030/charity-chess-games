@@ -22,6 +22,8 @@
                             <p class="card-text">$1000 minimum bet</p>
                             <form action="<c:url value="/createGame"/>" method="post">
                                 <div class="input-group">
+                                    <input type="hidden" name="size" value="5" />
+                                    <input type="hidden" name="page" value="0" />
                                     <input type="text" class="form-control" name="creationBet" placeholder="Your bet" aria-label="Dollar amount (with dot and two decimal places)">
                                     <span class="input-group-text">$</span>
                                 </div>
@@ -36,7 +38,12 @@
                         <div class="card-body">
                             <h5 class="card-title">My games</h5>
                             <p class="card-text">You can watch your games</p>
-                            <a href="<c:url value="/myGames"/>" class="btn btn-dark">My games</a>
+                            <form action="<c:url value="/myGames"/>">
+                                <input type="hidden" name="pageFirstTable" value="0" />
+                                <input type="hidden" name="sizeFirstTable" value="5" />
+                                <input type="hidden" name="pageSecondTable" value="0" />
+                                <button name="sizeSecondTable" value="5"  type="submit" class="btn btn-dark">My games</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -46,7 +53,10 @@
                         <div class="card-body">
                             <h5 class="card-title">Join the game</h5>
                             <p class="card-text">You can join existing games</p>
-                            <a href="<c:url value="/listAvailableGames"/>" class="btn btn-dark">Join</a>
+                            <form action="<c:url value="/listAvailableGames"/>">
+                                <input type="hidden" name="size" value="5" />
+                                <button name="page" value="0"  type="submit" class="btn btn-dark">Join</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import by.kovalenko.util.GameStatusName;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "game_status")
@@ -19,5 +19,5 @@ public class GameStatusEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private GameStatusName gameStatusName;
     @Column(name = "date")
-    private LocalDateTime date;
+    private Date date;
 }

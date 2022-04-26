@@ -14,5 +14,5 @@ import java.util.UUID;
 public class GameStatusDto {
     private UUID id;
     private GameStatusName gameStatusName;
-    private LocalDateTime date;
+    private String date;
 }

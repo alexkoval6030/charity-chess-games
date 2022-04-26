@@ -3,6 +3,7 @@ package by.kovalenko.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class GameEntity extends BaseEntity {
     private Set<UserEntity> users = new HashSet<>();
 
     @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-    private List<StakeEntity> stakes;
+    private List<StakeEntity> stakes = new ArrayList<>();
 
     public GameEntity(UserEntity creator, GameStatusEntity gameStatus) {
         this.creator = creator;

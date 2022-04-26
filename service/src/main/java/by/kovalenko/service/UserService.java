@@ -1,6 +1,7 @@
 package by.kovalenko.service;
 
 import by.kovalenko.dto.UserDto;
+import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.ValidationException;
 
 import java.util.UUID;
@@ -13,4 +14,6 @@ public interface UserService {
     UserDto findByUsername(String username);
 
     UserDto findByUsernameAndPassword(UserDto userDto);
+
+    UserEntity findByWalletId(UUID walletId);
 }

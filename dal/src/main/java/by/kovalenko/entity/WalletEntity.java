@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @ToString
 public class WalletEntity extends BaseEntity {
     @Column(name = "availableMoney")
-    private double availableMoney;
+    private Double availableMoney;
     @Column(name = "reservedMoney")
-    private double reservedMoney;
+    private Double reservedMoney;
 }

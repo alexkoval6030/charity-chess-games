@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -18,7 +19,8 @@ public class GameStatusServiceImpl implements GameStatusService {
 
     @Override
     public GameStatusEntity createGameStatus() {
+        Date date = new Date();
         return gameStatusRepository.save(
-                new GameStatusEntity(GameStatusName.PLANNED, LocalDateTime.now()));
+                new GameStatusEntity(GameStatusName.PLANNED, date));
     }
 }

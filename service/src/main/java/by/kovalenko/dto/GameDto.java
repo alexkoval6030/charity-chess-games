@@ -16,4 +16,5 @@ public class GameDto {
     private GameStatusDto gameStatus;
     private Boolean isCreatorWin;
     private Set<UserDto> users;
+    private Double creatorStake;
 }
