@@ -7,6 +7,7 @@
         <%@include file="../static/common/js-connect.jsp" %>
     </head>
     <body>
+    <c:if test="${sessionScope.user.role eq 'USER'}">
         <%@ include file="../static/common/header.jsp" %>
         <div style="text-align: center; font-size: 50px">
             Welcome to Charity Chess Games
@@ -77,5 +78,31 @@
                 <c:out value="${error}"/>
             </c:if>
         </div>
+    </c:if>
+    <c:if test="${sessionScope.user.role eq 'ADMIN'}">
+        <%@ include file="../static/common/header.jsp" %>
+        <div style="text-align: center; font-size: 50px">
+            You can start processing the games
+        </div>
+        <div class="row row-cols-1 row-cols-4 g-5 justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <img src="img/referee.png" class="card-img-top" width="144" height="259" alt="create game">
+                    <div class="card-body">
+                        <h5 class="card-title">Start refereeing the games</h5>
+                        <form action="<c:url value="/gamesAvailableForProcessing"/>">
+                            <input type="hidden" name="size" value="5" />
+                            <button name="page" value="0"  type="submit" class="btn btn-dark">Start</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="text-center mt-4" style="color: red">
+                    <c:if test="${error != null}">
+                        <c:out value="${error}"/>
+                    </c:if>
+                </div>
+            </div>
+        </div>
+    </c:if>
     </body>
 </html>

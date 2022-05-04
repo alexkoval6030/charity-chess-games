@@ -18,6 +18,7 @@
                     <tr>
                         <th scope="col">Game id</th>
                         <th scope="col">Game creator</th>
+                        <th scope="col">Creator bet</th>
                         <th scope="col">Game creation date</th>
                         <th scope="col">Game status</th>
                         <th scope="col">Your bet</th>
@@ -31,6 +32,7 @@
                                    role="button">${availableGame.id}</a>
                             </td>
                             <td>${availableGame.creator.username}</td>
+                            <td>${availableGame.creatorStake}</td>
                             <td>${availableGame.gameStatus.date}</td>
                             <td>${availableGame.gameStatus.gameStatusName}</td>
                             <td>
