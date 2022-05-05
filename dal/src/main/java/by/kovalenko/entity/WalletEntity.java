@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Table(name = "wallet")
 @AttributeOverride(name = "id", column = @Column(name = "wallet_id"))
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -20,4 +19,9 @@ public class WalletEntity extends BaseEntity {
     private Double availableMoney;
     @Column(name = "reservedMoney")
     private Double reservedMoney;
+
+    public WalletEntity(Double availableMoney, Double reservedMoney) {
+        this.availableMoney = availableMoney;
+        this.reservedMoney = reservedMoney;
+    }
 }

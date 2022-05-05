@@ -37,7 +37,8 @@ public class UserServiceImpl implements UserService {
         validateUserDto(userDto);
         UserEntity userEntity = userMapper.userDtoToUserEntity(userDto);
         userEntity.setRole(UserRole.USER);
-        WalletEntity wallet = walletRepository.save(new WalletEntity());
+        WalletEntity walletEntity = new WalletEntity(0.0, 0.0);
+        WalletEntity wallet = walletRepository.save(walletEntity);
         userEntity.setWallet(wallet);
         return userMapper.userEntityToUserDto(userRepository.save(userEntity));
     }

@@ -49,7 +49,10 @@ public class RefereeController {
     private Date parseStringToDate(String string) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
-            return formatter.parse(string + " 00:00");
+            if(string != null){
+                return formatter.parse(string + " 00:00");
+            }
+            return null;
         } catch (Exception e) {
             return null;
         }

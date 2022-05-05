@@ -14,7 +14,7 @@ import javax.persistence.*;
 @ToString
 public class StakeEntity extends BaseEntity {
     @Column(name = "stake")
-    private double stake;
+    private Double stake;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private UserEntity user;

@@ -14,19 +14,13 @@ import java.util.List;
         GameStatusMapper.class
 })
 public interface GameMapper {
-    @Mapping(target = "creatorStake", source = "stakes", qualifiedByName = "creatorStakeMapper")
+    @Mapping(target = "creatorStake", source = "creatorStake", qualifiedByName = "creatorStakeMapper")
     GameDto gameEntityToGameDto(GameEntity gameEntity);
     @Named("creatorStakeMapper")
-    default Double mapCreatorStake(List<StakeEntity> stakes) {
-        if (stakes == null) {
+    default Double mapCreatorStake(StakeEntity stake) {
+        if (stake == null) {
             return null;
         }
-        return stakes.isEmpty() ? null : stakes.get(0).getStake();
+        return stake.getStake();
     }
-
-    GameEntity gameDtoToGameEntity(GameDto gameDto);
-
-    List<GameDto> listGameEntityToListGameDto(List<GameEntity> gameEntityList);
-
-    HashSet<GameDto> hashSetGameEntityToHashSetGameDto(HashSet<GameEntity> gameEntityHashSet);
 }

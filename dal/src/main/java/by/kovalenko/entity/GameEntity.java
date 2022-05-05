@@ -21,6 +21,9 @@ public class GameEntity extends BaseEntity {
     @JoinColumn(name = "creator_id")
     private UserEntity creator;
     @OneToOne
+    @JoinColumn(name = "stake_id")
+    private StakeEntity creatorStake;
+    @OneToOne
     @JoinColumn(name = "game_status_id")
     private GameStatusEntity gameStatus;
     @Column(name = "is_creator_win")

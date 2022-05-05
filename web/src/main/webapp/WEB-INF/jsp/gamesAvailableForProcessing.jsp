@@ -53,7 +53,7 @@
                     <th scope="col">Creator bet</th>
                     <th scope="col">Game creation date</th>
                     <th scope="col">Game status</th>
-                    <th scope="col">Pick a winner</th>
+                    <th scope="col">Choose result</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,11 +70,12 @@
                         <td>
                             <form action="<c:url value="/joinGame/${gameDto.id}"/>">
                                 <div class="input-group">
-                                    <input type="text" name="connectionBet" value="0"/>
-                                    <span class="input-group-text">$</span>
-                                    <input type="hidden" name="size" value="5" />
-                                    <input type="hidden" name="page" value="0" />
-                                    <button type="submit" class="btn btn-dark">Join</button>
+                                    <button type="submit" class="btn btn-success">Creator win</button>
+                                </div>
+                            </form>
+                            <form action="<c:url value="/joinGame/${gameDto.id}"/>">
+                                <div class="input-group">
+                                    <button type="submit" class="btn btn-danger">Creator lose</button>
                                 </div>
                             </form>
                         </td>
@@ -101,11 +102,21 @@
                         <c:if test="${index != page}">
                             <li class="page-item">
                                 <form action="<c:url value="/gamesAvailableForProcessing"/>">
-                                    <input type="hidden" name="creatorUsername" value="${creatorUsername}" />
-                                    <input type="hidden" name="fromDateString" value="${fromDateString}" />
-                                    <input type="hidden" name="toDateString" value="${toDateString}" />
-                                    <input type="hidden" name="minimum" value="${minimum}" />
-                                    <input type="hidden" name="maximum" value="${maximum}" />
+<%--                                    <c:if test="${creatorUsername == ''}">--%>
+                                        <input type="hidden" name="creatorUsername" value="${creatorUsername}" />
+<%--                                    </c:if>--%>
+<%--                                    <c:if test="${fromDateString == ''}">--%>
+                                        <input type="hidden" name="fromDateString" value="${fromDateString}" />
+<%--                                    </c:if>--%>
+<%--                                    <c:if test="${toDateString == ''}">--%>
+                                        <input type="hidden" name="toDateString" value="${toDateString}" />
+<%--                                    </c:if>--%>
+<%--                                    <c:if test="${minimum == null}">--%>
+                                        <input type="hidden" name="minimum" value="${minimum}" />
+<%--                                    </c:if>--%>
+<%--                                    <c:if test="${maximum == maximum}">--%>
+                                        <input type="hidden" name="maximum" value="${maximum}" />
+<%--                                    </c:if>--%>
                                     <input type="hidden" name="size" value="5" />
                                     <button name="page" value="${index - 1}" type="submit" class="btn btn-outline-dark">${index}</button>
                                 </form>
