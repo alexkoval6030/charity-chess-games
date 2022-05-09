@@ -9,7 +9,6 @@ import by.kovalenko.util.GameStatusName;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -31,4 +30,8 @@ public interface GameService {
     HashSet<UserDto> findAllParticipants(UUID id);
 
     List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, Date createdDateTime);
+
+    GameEntity processingResultCreatorWin(WalletDto walletDto, UUID gameId, Boolean result);
+
+    GameEntity processingResultCreatorLose(WalletDto walletDto, UUID gameId, Boolean result);
 }

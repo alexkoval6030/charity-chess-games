@@ -23,9 +23,9 @@ public class RefereeSearchSpecification implements Specification<GameEntity> {
         predicates.add(criteriaBuilder.equal(root.get("gameStatus").get("gameStatusName"), GameStatusName.DURING));
         if (searchAttributes.getCreatorUsername() != null) {
             predicates.add(
-                    criteriaBuilder.equal(
-                            root.get("creator").get("username"),
-                            searchAttributes.getCreatorUsername()));
+                    criteriaBuilder.like(
+                            root.get("creator").get("username"), "%" +
+                            searchAttributes.getCreatorUsername() + "%"));
         }
         if (searchAttributes.getFromDate() != null && searchAttributes.getToDate() != null) {
             predicates.add(
@@ -50,20 +50,20 @@ public class RefereeSearchSpecification implements Specification<GameEntity> {
         if (searchAttributes.getMinimum() != null && searchAttributes.getMaximum() != null) {
             predicates.add(
                     criteriaBuilder.between(
-                            root.get("stakes"),
+                            root.get("creatorStake").get("stake"),
                             searchAttributes.getMinimum(),
                             searchAttributes.getMaximum()));
         }
         if (searchAttributes.getMinimum() != null && searchAttributes.getMaximum() == null) {
             predicates.add(
                     criteriaBuilder.greaterThanOrEqualTo(
-                            root.get("creatorStake"),
+                            root.get("creatorStake").get("stake"),
                             searchAttributes.getMinimum()));
         }
-        if (searchAttributes.getFromDate() == null && searchAttributes.getToDate() != null) {
+        if (searchAttributes.getMinimum() == null && searchAttributes.getMaximum() != null) {
             predicates.add(
                     criteriaBuilder.lessThanOrEqualTo(
-                            root.get("creator").get("stake"),
+                            root.get("creatorStake").get("stake"),
                             searchAttributes.getMaximum()));
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));

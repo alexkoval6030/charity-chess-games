@@ -5,10 +5,12 @@ import by.kovalenko.dto.UserDto;
 import by.kovalenko.dto.WalletDto;
 import by.kovalenko.entity.GameEntity;
 import by.kovalenko.entity.GameStatusEntity;
+import by.kovalenko.entity.StakeEntity;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.exception.InsufficientFundsException;
 import by.kovalenko.mapper.GameMapper;
 import by.kovalenko.mapper.UserMapper;
+import by.kovalenko.mapper.WalletMapper;
 import by.kovalenko.repositories.GameRepository;
 import by.kovalenko.repositories.UserRepository;
 import by.kovalenko.service.GameService;
@@ -28,6 +30,9 @@ import java.util.*;
 @Transactional
 @RequiredArgsConstructor
 public class GameServiceImpl implements GameService {
+    private final static double INITIAL_FUND_SIZE = 0.0;
+    private final static double COEFFICIENT_CHARITY_FUND = 0.95;
+
     private final GameRepository gameRepository;
     private final UserRepository userRepository;
     private final GameStatusService gameStatusService;
@@ -35,6 +40,7 @@ public class GameServiceImpl implements GameService {
     private final WalletService walletService;
     private final GameMapper gameMapper;
     private final UserMapper userMapper;
+    private final WalletMapper walletMapper;
 
     @Override
     public GameDto createGame(UUID id, WalletDto walletDto, double creationBet) throws InsufficientFundsException {
@@ -42,7 +48,8 @@ public class GameServiceImpl implements GameService {
             GameStatusEntity gameStatusEntity = gameStatusService.createGameStatus();
             GameEntity gameEntity = new GameEntity(userRepository.findById(id).get(), gameStatusEntity);
             gameEntity = gameRepository.save(gameEntity);
-            stakeService.makeStake(id, gameEntity, creationBet);
+            StakeEntity stakeEntity = stakeService.makeStake(id, gameEntity, creationBet);
+            gameEntity.setCreatorStake(stakeEntity);
             walletService.updateWalletMadeBet(walletDto.getId(), creationBet);
             return gameMapper.gameEntityToGameDto(gameEntity);
         } else {
@@ -104,6 +111,47 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, Date createdDateTime) {
         return gameRepository.findAllByGameStatusGameStatusNameAndGameStatusDateBefore(gameStatusName, createdDateTime);
+    }
+
+
+    private GameEntity gameStatusChange(UUID gameId, Boolean result) {
+        Optional<GameEntity> gameEntity = gameRepository.findById(gameId);
+        gameEntity.get().getGameStatus().setGameStatusName(GameStatusName.FINISHED);
+        gameEntity.get().setIsCreatorWin(result);
+        return gameEntity.get();
+    }
+
+    @Override
+    public GameEntity processingResultCreatorWin(WalletDto walletDto, UUID gameId, Boolean result) {
+        GameEntity gameEntity = gameStatusChange(gameId, result);
+        Double fund = INITIAL_FUND_SIZE;
+        Set<UserEntity> users = gameEntity.getUsers();
+        for (UserEntity user : users) {
+            Double renewedFund = walletService.chargeOffReserveAccount(user, gameEntity);
+            fund = fund + renewedFund;
+        }
+        Double renewedFund = walletService.chargeOffReserveAccount(gameEntity.getCreator(), gameEntity);
+        fund = fund + renewedFund;
+        double charityFund = fund * COEFFICIENT_CHARITY_FUND;
+        double feeFund = fund - charityFund;
+        walletService.addCharityFund(walletDto.getId(), charityFund);
+        walletService.addFeeFund(walletDto.getId(), feeFund);
+        return gameEntity;
+    }
+
+    @Override
+    public GameEntity processingResultCreatorLose(WalletDto walletDto, UUID gameId, Boolean result) {
+        GameEntity gameEntity = gameStatusChange(gameId, result);
+        Double fund = INITIAL_FUND_SIZE;
+        Set<UserEntity> users = gameEntity.getUsers();
+        for (UserEntity user : users) {
+            Double renewedFund = walletService.formationOfFund(user, gameEntity);
+            fund = fund + renewedFund;
+        }
+        Double renewedFund = walletService.chargeOffReserveAccount(gameEntity.getCreator(), gameEntity);
+        fund = fund + renewedFund;
+        walletService.fundAllocation(fund, gameEntity, walletDto.getId());
+        return gameEntity;
     }
 
     @Override

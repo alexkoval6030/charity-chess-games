@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = {"creator", "users", "stakes"})
+@ToString(exclude = {"creator", "users", "stakes", "creatorStake"})
 public class GameEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")

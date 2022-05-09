@@ -2,6 +2,8 @@ package by.kovalenko.controller;
 
 import by.kovalenko.dto.GameDto;
 import by.kovalenko.dto.SearchAttributes;
+import by.kovalenko.dto.WalletDto;
+import by.kovalenko.service.GameService;
 import by.kovalenko.service.RefereeService;
 import by.kovalenko.spetification.RefereeSearchSpecification;
 import lombok.RequiredArgsConstructor;
@@ -9,16 +11,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
+@SessionAttributes("wallet")
 public class RefereeController {
     private final RefereeService refereeService;
+    private final GameService gameService;
 
     @GetMapping(path = "/gamesAvailableForProcessing")
     public String gamesAvailableForProcessing(
@@ -44,6 +48,32 @@ public class RefereeController {
         model.addAttribute("minimum", minimum);
         model.addAttribute("maximum", maximum);
         return "/gamesAvailableForProcessing";
+    }
+
+    @GetMapping(path = "resultCreatorWin")
+    public String resultCreatorWin(
+            @SessionAttribute(name = "wallet") WalletDto walletDto,
+            @RequestParam(name = "gameId") UUID gameId,
+            @RequestParam(name = "result") Boolean result,
+            Model model
+    ){
+        gameService.processingResultCreatorWin(walletDto, gameId, result);
+        model.addAttribute("page", 0);
+        model.addAttribute("size", 5);
+        return "redirect:/gamesAvailableForProcessing";
+    }
+
+    @GetMapping(path = "resultCreatorLose")
+    public String resultCreatorLose(
+            @SessionAttribute(name = "wallet") WalletDto walletDto,
+            @RequestParam(name = "gameId") UUID gameId,
+            @RequestParam(name = "result") Boolean result,
+            Model model
+    ) {
+        gameService.processingResultCreatorLose(walletDto, gameId, result);
+        model.addAttribute("page", 0);
+        model.addAttribute("size", 5);
+        return "redirect:/gamesAvailableForProcessing";
     }
 
     private Date parseStringToDate(String string) {
