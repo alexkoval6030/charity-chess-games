@@ -11,8 +11,8 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchAttributes {
-    private String creatorUsername;
+public class RefereeSearchAttributes {
+    private String username;
     private Date fromDate;
     private Date toDate;
     private Double minimum;

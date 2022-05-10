@@ -67,7 +67,10 @@
                         <div class="card-body">
                             <h5 class="card-title">My Game Story</h5>
                             <p class="card-text">You can look at the history of the games played</p>
-                            <a href="<c:url value="/myGames"/>" class="btn btn-dark">My Game Story</a>
+                            <form action="<c:url value="/userPayments"/>">
+                                <input type="hidden" name="size" value="5" />
+                                <button name="page" value="0"  type="submit" class="btn btn-dark">My Payments Story</button>
+                            </form>
                         </div>
                     </div>
                 </div>

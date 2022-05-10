@@ -1,7 +1,7 @@
 package by.kovalenko.service.impl;
 
 import by.kovalenko.dto.GameDto;
-import by.kovalenko.dto.SearchAttributes;
+import by.kovalenko.dto.RefereeSearchAttributes;
 import by.kovalenko.entity.GameEntity;
 import by.kovalenko.mapper.GameMapper;
 import by.kovalenko.repositories.GameRepository;
@@ -21,7 +21,7 @@ public class RefereeServiceImpl implements RefereeService {
     private final GameMapper gameMapper;
 
     @Override
-    public RefereeSearchSpecification getSpecification(SearchAttributes searchAttributes) {
+    public RefereeSearchSpecification getSpecification(RefereeSearchAttributes searchAttributes) {
         return new RefereeSearchSpecification(searchAttributes);
     }
 

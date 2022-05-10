@@ -71,27 +71,27 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="gameDto" items="${gameDtoPage}">
+                <c:forEach var="paymentDto" items="${gameDtoPage}">
                     <tr>
                         <td>
-                            <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${gameDto.id}"/>"
-                               role="button">${gameDto.id}</a>
+                            <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${paymentDto.id}"/>"
+                               role="button">${paymentDto.id}</a>
                         </td>
-                        <td>${gameDto.creator.username}</td>
-                        <td>${gameDto.creatorStake}</td>
-                        <td>${gameDto.gameStatus.date}</td>
-                        <td>${gameDto.gameStatus.gameStatusName}</td>
+                        <td>${paymentDto.creator.username}</td>
+                        <td>${paymentDto.creatorStake}</td>
+                        <td>${paymentDto.gameStatus.date}</td>
+                        <td>${paymentDto.gameStatus.gameStatusName}</td>
                         <td>
                             <form action="<c:url value="/resultCreatorWin"/>">
                                 <div class="input-group">
-                                    <input type="hidden" name="gameId" value="${gameDto.id}"/>
+                                    <input type="hidden" name="gameId" value="${paymentDto.id}"/>
                                     <input type="hidden" name="result" value="true"/>
                                     <button type="submit" class="btn btn-success">Creator win</button>
                                 </div>
                             </form>
                             <form action="<c:url value="/resultCreatorLose"/>">
                                 <div class="input-group">
-                                    <input type="hidden" name="gameId" value="${gameDto.id}"/>
+                                    <input type="hidden" name="gameId" value="${paymentDto.id}"/>
                                     <input type="hidden" name="result" value="false"/>
                                     <button type="submit" class="btn btn-danger">Creator lose</button>
                                 </div>

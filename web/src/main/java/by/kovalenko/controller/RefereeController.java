@@ -1,7 +1,7 @@
 package by.kovalenko.controller;
 
 import by.kovalenko.dto.GameDto;
-import by.kovalenko.dto.SearchAttributes;
+import by.kovalenko.dto.RefereeSearchAttributes;
 import by.kovalenko.dto.WalletDto;
 import by.kovalenko.service.GameService;
 import by.kovalenko.service.RefereeService;
@@ -37,7 +37,7 @@ public class RefereeController {
         Date fromDate = parseStringToDate(fromDateString);
         Date toDate = parseStringToDate(toDateString);
         RefereeSearchSpecification specification = refereeService.getSpecification(
-                new SearchAttributes(creatorUsername, fromDate, toDate, minimum, maximum));
+                new RefereeSearchAttributes(creatorUsername, fromDate, toDate, minimum, maximum));
         Page<GameDto> gameDtoPage = refereeService.findAll(specification, pageable);
         model.addAttribute("gameDtoPage", gameDtoPage.getContent());
         model.addAttribute("page", pageable.getPageNumber() + 1);

@@ -1,70 +1,68 @@
 package by.kovalenko.spetification;
 
-import by.kovalenko.dto.SearchAttributes;
+import by.kovalenko.dto.RefereeSearchAttributes;
 import by.kovalenko.entity.GameEntity;
 import by.kovalenko.util.GameStatusName;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class RefereeSearchSpecification implements Specification<GameEntity> {
-    private final SearchAttributes searchAttributes;
-
-    public RefereeSearchSpecification(SearchAttributes searchAttributes) {
-        this.searchAttributes = searchAttributes;
-    }
+    private final RefereeSearchAttributes refereeSearchAttributes;
 
     @Override
     public Predicate toPredicate(Root<GameEntity> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 
         final List<Predicate> predicates = new ArrayList<Predicate>();
         predicates.add(criteriaBuilder.equal(root.get("gameStatus").get("gameStatusName"), GameStatusName.DURING));
-        if (searchAttributes.getCreatorUsername() != null) {
+        if (refereeSearchAttributes.getUsername() != null) {
             predicates.add(
                     criteriaBuilder.like(
                             root.get("creator").get("username"), "%" +
-                            searchAttributes.getCreatorUsername() + "%"));
+                            refereeSearchAttributes.getUsername() + "%"));
         }
-        if (searchAttributes.getFromDate() != null && searchAttributes.getToDate() != null) {
+        if (refereeSearchAttributes.getFromDate() != null && refereeSearchAttributes.getToDate() != null) {
             predicates.add(
                     criteriaBuilder.between(
                             root.get("gameStatus").get("date"),
-                            searchAttributes.getFromDate(),
-                            searchAttributes.getToDate()));
+                            refereeSearchAttributes.getFromDate(),
+                            refereeSearchAttributes.getToDate()));
         }
-        if (searchAttributes.getFromDate() != null && searchAttributes.getToDate() == null) {
+        if (refereeSearchAttributes.getFromDate() != null && refereeSearchAttributes.getToDate() == null) {
             predicates.add(
                     criteriaBuilder.greaterThanOrEqualTo(
                             root.get("gameStatus").get("date"),
-                            searchAttributes.getFromDate()));
+                            refereeSearchAttributes.getFromDate()));
         }
-        if (searchAttributes.getFromDate() == null && searchAttributes.getToDate() != null) {
+        if (refereeSearchAttributes.getFromDate() == null && refereeSearchAttributes.getToDate() != null) {
             predicates.add(
                     criteriaBuilder.lessThanOrEqualTo(
                             root.get("gameStatus").get("date"),
-                            searchAttributes.getToDate()));
+                            refereeSearchAttributes.getToDate()));
         }
 
-        if (searchAttributes.getMinimum() != null && searchAttributes.getMaximum() != null) {
+        if (refereeSearchAttributes.getMinimum() != null && refereeSearchAttributes.getMaximum() != null) {
             predicates.add(
                     criteriaBuilder.between(
                             root.get("creatorStake").get("stake"),
-                            searchAttributes.getMinimum(),
-                            searchAttributes.getMaximum()));
+                            refereeSearchAttributes.getMinimum(),
+                            refereeSearchAttributes.getMaximum()));
         }
-        if (searchAttributes.getMinimum() != null && searchAttributes.getMaximum() == null) {
+        if (refereeSearchAttributes.getMinimum() != null && refereeSearchAttributes.getMaximum() == null) {
             predicates.add(
                     criteriaBuilder.greaterThanOrEqualTo(
                             root.get("creatorStake").get("stake"),
-                            searchAttributes.getMinimum()));
+                            refereeSearchAttributes.getMinimum()));
         }
-        if (searchAttributes.getMinimum() == null && searchAttributes.getMaximum() != null) {
+        if (refereeSearchAttributes.getMinimum() == null && refereeSearchAttributes.getMaximum() != null) {
             predicates.add(
                     criteriaBuilder.lessThanOrEqualTo(
                             root.get("creatorStake").get("stake"),
-                            searchAttributes.getMaximum()));
+                            refereeSearchAttributes.getMaximum()));
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
     }

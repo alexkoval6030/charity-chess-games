@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "user")
 public class PaymentEntity extends BaseEntity {
     @Column(name = "paymentDate")
     private Date paymentDate;
