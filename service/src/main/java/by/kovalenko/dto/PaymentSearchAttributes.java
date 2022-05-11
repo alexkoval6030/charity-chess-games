@@ -1,6 +1,5 @@
 package by.kovalenko.dto;
 
-import by.kovalenko.util.PaymentTransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -11,7 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,7 +59,7 @@ public class RefereeController {
             @RequestParam(name = "gameId") UUID gameId,
             @RequestParam(name = "result") Boolean result,
             Model model
-    ){
+    ) {
         gameService.processingResultCreatorWin(walletDto, gameId, result);
         model.addAttribute("page", 0);
         model.addAttribute("size", 5);
@@ -79,7 +82,7 @@ public class RefereeController {
     private Date parseStringToDate(String string) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
-            if(string != null){
+            if (string != null) {
                 return formatter.parse(string + " 00:00");
             }
             return null;

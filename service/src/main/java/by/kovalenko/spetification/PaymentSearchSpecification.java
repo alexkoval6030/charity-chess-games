@@ -2,6 +2,7 @@ package by.kovalenko.spetification;
 
 import by.kovalenko.dto.PaymentSearchAttributes;
 import by.kovalenko.entity.PaymentEntity;
+import by.kovalenko.util.PaymentTransactionType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -21,11 +22,11 @@ public class PaymentSearchSpecification implements Specification<PaymentEntity> 
 
         final List<Predicate> predicates = new ArrayList<Predicate>();
         predicates.add(criteriaBuilder.equal(root.get("user").get("username"), paymentSearchAttributes.getUsername()));
-        if (paymentSearchAttributes.getPaymentTransactionType() != null){
+        if (paymentSearchAttributes.getPaymentTransactionType() != null) {
             predicates.add(
                     criteriaBuilder.equal(
                             root.get("paymentTransactionType"),
-                            paymentSearchAttributes.getPaymentTransactionType()));
+                            PaymentTransactionType.valueOf(paymentSearchAttributes.getPaymentTransactionType())));
         }
         if (paymentSearchAttributes.getFromDate() != null && paymentSearchAttributes.getToDate() != null) {
             predicates.add(

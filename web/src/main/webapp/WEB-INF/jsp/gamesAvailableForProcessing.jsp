@@ -12,50 +12,50 @@
         Use sorting to the desired fields
     </div>
     <div class="container mt-5 mb-5">
-                <form action="<c:url value="/gamesAvailableForProcessing"/>" method="get">
-                    <div class="row">
-                    <div class="col">
-                        <input type="text" id="creatorUsername" class="form-control"
-                               placeholder="Creator username" name="creatorUsername"
-                        <c:if test="${creatorUsername != null || creatorUsername != ''}">
-                            value="${creatorUsername}"
-                        </c:if>>
-                    </div>
-                    <div class="col">
-                        <input type="text" id="fromWhatDate" class="form-control"
-                               placeholder="From date" name="fromDateString"
-                        <c:if test="${fromDateString != null || fromDateString != ''}">
-                               value="${fromDateString}"
-                        </c:if>>
-                    </div>
-                    <div class="col">
-                        <input type="text" id="toWhatDate" class="form-control"
-                               placeholder="To date" name="toDateString"
-                        <c:if test="${toDateString != null || toDateString != ''}">
-                               value="${toDateString}"
-                        </c:if>>
-                    </div>
-                    <div class="col">
-                        <input type="text" id="minimum" class="form-control"
-                               placeholder="Minimum bet" name="minimum"
-                        <c:if test="${minimum != null || minimum != ''}">
-                               value="${minimum}"
-                        </c:if>>
-                    </div>
-                    <div class="col">
-                        <input type="text" id="maximum" class="form-control"
-                               placeholder="Maximum bet" name="maximum"
-                        <c:if test="${maximum != null || maximum != ''}">
-                               value="${maximum}"
-                        </c:if>>
-                    </div>
-                    <div class="col">
-                        <input type="hidden" name="size" value="5" />
-                        <input type="hidden" name="page" value="0" />
-                        <button type="submit" class="btn btn-dark">Filter</button>
-                    </div>
-                    </div>
-                </form>
+        <form action="<c:url value="/gamesAvailableForProcessing"/>" method="get">
+            <div class="row">
+                <div class="col">
+                    <input type="text" id="creatorUsername" class="form-control"
+                           placeholder="Creator username" name="creatorUsername"
+                    <c:if test="${creatorUsername != null || creatorUsername != ''}">
+                           value="${creatorUsername}"
+                    </c:if>>
+                </div>
+                <div class="col">
+                    <input type="text" id="fromWhatDate" class="form-control"
+                           placeholder="From date" name="fromDateString"
+                    <c:if test="${fromDateString != null || fromDateString != ''}">
+                           value="${fromDateString}"
+                    </c:if>>
+                </div>
+                <div class="col">
+                    <input type="text" id="toWhatDate" class="form-control"
+                           placeholder="To date" name="toDateString"
+                    <c:if test="${toDateString != null || toDateString != ''}">
+                           value="${toDateString}"
+                    </c:if>>
+                </div>
+                <div class="col">
+                    <input type="text" id="minimum" class="form-control"
+                           placeholder="Minimum bet" name="minimum"
+                    <c:if test="${minimum != null || minimum != ''}">
+                           value="${minimum}"
+                    </c:if>>
+                </div>
+                <div class="col">
+                    <input type="text" id="maximum" class="form-control"
+                           placeholder="Maximum bet" name="maximum"
+                    <c:if test="${maximum != null || maximum != ''}">
+                           value="${maximum}"
+                    </c:if>>
+                </div>
+                <div class="col">
+                    <input type="hidden" name="size" value="5" />
+                    <input type="hidden" name="page" value="0" />
+                    <button type="submit" class="btn btn-dark">Filter</button>
+                </div>
+            </div>
+        </form>
     </div>
     <div>
         <div class="container">
@@ -74,8 +74,10 @@
                 <c:forEach var="paymentDto" items="${gameDtoPage}">
                     <tr>
                         <td>
-                            <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${paymentDto.id}"/>"
-                               role="button">${paymentDto.id}</a>
+                            <a class="btn btn-dark"
+                               href="<c:url value="/viewParticipants?gameId=${paymentDto.id}"/>"
+                               role="button">${paymentDto.id}
+                            </a>
                         </td>
                         <td>${paymentDto.creator.username}</td>
                         <td>${paymentDto.creatorStake}</td>
@@ -108,22 +110,27 @@
                             <li class="page-item">
                                 <form action="<c:url value="/gamesAvailableForProcessing"/>">
                                     <c:if test="${creatorUsername != null || creatorUsername != ''}">
-                                        <input type="hidden" name="creatorUsername" value="${creatorUsername}" />
+                                        <input type="hidden" name="creatorUsername"
+                                               value="${creatorUsername}"/>
                                     </c:if>
                                     <c:if test="${fromDateString != null || fromDateString != ''}">
-                                        <input type="hidden" name="fromDateString" value="${fromDateString}" />
+                                        <input type="hidden" name="fromDateString"
+                                               value="${fromDateString}"/>
                                     </c:if>
                                     <c:if test="${toDateString != null || toDateString != ''}">
-                                        <input type="hidden" name="toDateString" value="${toDateString}" />
+                                        <input type="hidden" name="toDateString"
+                                               value="${toDateString}"/>
                                     </c:if>
                                     <c:if test="${minimum != null || minimum != ''}">
-                                        <input type="hidden" name="minimum" value="${minimum}" />
+                                        <input type="hidden" name="minimum" value="${minimum}"/>
                                     </c:if>
                                     <c:if test="${maximum != null || maximum != ''}">
-                                        <input type="hidden" name="maximum" value="${maximum}" />
+                                        <input type="hidden" name="maximum" value="${maximum}"/>
                                     </c:if>
-                                    <input type="hidden" name="size" value="5" />
-                                    <button name="page" value="${index - 1}" type="submit" class="btn btn-dark">${index}</button>
+                                    <input type="hidden" name="size" value="5"/>
+                                    <button name="page" value="${index - 1}" type="submit"
+                                            class="btn btn-dark">${index}
+                                    </button>
                                 </form>
                             </li>
                         </c:if>
@@ -131,22 +138,27 @@
                             <li class="page-item">
                                 <form action="<c:url value="/gamesAvailableForProcessing"/>">
                                     <c:if test="${creatorUsername != null}">
-                                        <input type="hidden" name="creatorUsername" value="${creatorUsername}" />
+                                        <input type="hidden" name="creatorUsername"
+                                               value="${creatorUsername}"/>
                                     </c:if>
                                     <c:if test="${fromDateString != null}">
-                                        <input type="hidden" name="fromDateString" value="${fromDateString}" />
+                                        <input type="hidden" name="fromDateString"
+                                               value="${fromDateString}"/>
                                     </c:if>
                                     <c:if test="${toDateString != null}">
-                                        <input type="hidden" name="toDateString" value="${toDateString}" />
+                                        <input type="hidden" name="toDateString"
+                                               value="${toDateString}"/>
                                     </c:if>
                                     <c:if test="${minimum != null}">
-                                        <input type="hidden" name="minimum" value="${minimum}" />
+                                        <input type="hidden" name="minimum" value="${minimum}"/>
                                     </c:if>
                                     <c:if test="${maximum != null}">
-                                        <input type="hidden" name="maximum" value="${maximum}" />
+                                        <input type="hidden" name="maximum" value="${maximum}"/>
                                     </c:if>
-                                    <input type="hidden" name="size" value="5" />
-                                    <button name="page" value="${index - 1}" type="submit" class="btn btn-outline-dark">${index}</button>
+                                    <input type="hidden" name="size" value="5"/>
+                                    <button name="page" value="${index - 1}" type="submit"
+                                            class="btn btn-outline-dark">${index}
+                                    </button>
                                 </form>
                             </li>
                         </c:if>

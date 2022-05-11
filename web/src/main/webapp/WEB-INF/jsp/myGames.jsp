@@ -21,6 +21,7 @@
                             <th scope="col">Game creation date</th>
                             <th scope="col">Game status</th>
                             <th scope="col">Who created this game</th>
+                            <th scope="col">Creator bet</th>
                             <th scope="col">Result of the game</th>
                         </tr>
                     </thead>
@@ -28,13 +29,16 @@
                         <c:forEach var="createdGame" items="${allCreatedGames}">
                             <tr>
                                 <td>
-                                    <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${createdGame.id}"/>"
+                                    <a class="btn btn-dark"
+                                       href="<c:url value="/viewParticipants?gameId=${createdGame.id}"/>"
                                        role="button">${createdGame.id}</a>
                                 </td>
                                 <td>${createdGame.gameStatus.date}</td>
                                 <td>${createdGame.gameStatus.gameStatusName}</td>
                                 <td>${createdGame.creator.username}</td>
-                                <td><c:if test="${createdGame.isCreatorWin == true}">
+                                <td>${createdGame.creatorStake}</td>
+                                <td style="color: ${createdGame.isCreatorWin ? 'green' : 'red'}">
+                                    <c:if test="${createdGame.isCreatorWin == true}">
                                         You win
                                     </c:if>
                                     <c:if test="${createdGame.isCreatorWin == false}">
@@ -51,20 +55,27 @@
                             <c:if test="${indexFirstTable == pageFirstTable}">
                                 <li class="page-item">
                                     <form action="<c:url value="/myGames"/>">
-                                        <input type="hidden" name="pageSecondTable" value="${pageSecondTable - 1}"/>
+                                        <input type="hidden" name="pageSecondTable"
+                                               value="${pageSecondTable - 1}"/>
                                         <input type="hidden" name="sizeSecondTable" value="5" />
                                         <input type="hidden" name="sizeFirstTable" value="5" />
-                                        <button name="pageFirstTable" value="${indexFirstTable - 1}" type="submit" class="btn btn-dark">${indexFirstTable}</button>
+                                        <button name="pageFirstTable" value="${indexFirstTable - 1}"
+                                                type="submit" class="btn btn-dark">${indexFirstTable}
+                                        </button>
                                     </form>
                                 </li>
                             </c:if>
                             <c:if test="${indexFirstTable != pageFirstTable}">
                                 <li class="page-item">
                                     <form action="<c:url value="/myGames"/>">
-                                        <input type="hidden" name="pageSecondTable" value="${pageSecondTable - 1}"/>
+                                        <input type="hidden" name="pageSecondTable"
+                                               value="${pageSecondTable - 1}"/>
                                         <input type="hidden" name="sizeSecondTable" value="5" />
                                         <input type="hidden" name="sizeFirstTable" value="5" />
-                                        <button name="pageFirstTable" value="${indexFirstTable - 1}" type="submit" class="btn btn-outline-dark">${indexFirstTable}</button>
+                                        <button name="pageFirstTable" value="${indexFirstTable - 1}"
+                                                type="submit" class="btn btn-outline-dark">
+                                                ${indexFirstTable}
+                                        </button>
                                     </form>
                                 </li>
                             </c:if>
@@ -85,6 +96,7 @@
                         <th scope="col">Game creation date</th>
                         <th scope="col">Game status</th>
                         <th scope="col">Who created this game</th>
+                        <th scope="col">Creator bet</th>
                         <th scope="col">Result of the game</th>
                     </tr>
                     </thead>
@@ -92,13 +104,16 @@
                     <c:forEach var="attachedGame" items="${allAttachedGames}">
                         <tr>
                             <td>
-                                <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${attachedGame.id}"/>"
+                                <a class="btn btn-dark"
+                                   href="<c:url value="/viewParticipants?gameId=${attachedGame.id}"/>"
                                    role="button">${attachedGame.id}</a>
                             </td>
                             <td>${attachedGame.gameStatus.date}</td>
                             <td>${attachedGame.gameStatus.gameStatusName}</td>
                             <td>${attachedGame.creator.username}</td>
-                            <td><c:if test="${attachedGame.isCreatorWin == true}">
+                            <td>${attachedGame.creatorStake}</td>
+                            <td style="color: ${attachedGame.isCreatorWin ? 'red' : 'green'}">
+                                <c:if test="${attachedGame.isCreatorWin == true}">
                                     You lose
                                 </c:if>
                                 <c:if test="${attachedGame.isCreatorWin == false}">
@@ -115,20 +130,27 @@
                             <c:if test="${indexSecondTable == pageSecondTable}">
                                 <li class="page-item">
                                     <form action="<c:url value="/myGames"/>">
-                                        <input type="hidden" name="pageFirstTable" value="${pageFirstTable - 1}"/>
+                                        <input type="hidden" name="pageFirstTable"
+                                               value="${pageFirstTable - 1}"/>
                                         <input type="hidden" name="sizeFirstTable" value="5" />
                                         <input type="hidden" name="sizeSecondTable" value="5" />
-                                        <button name="pageSecondTable" value="${indexSecondTable - 1}" type="submit" class="btn btn-dark">${indexSecondTable}</button>
+                                        <button name="pageSecondTable" value="${indexSecondTable - 1}"
+                                                type="submit" class="btn btn-dark">${indexSecondTable}
+                                        </button>
                                     </form>
                                 </li>
                             </c:if>
                             <c:if test="${indexSecondTable != pageSecondTable}">
                                 <li class="page-item">
                                     <form action="<c:url value="/myGames"/>">
-                                        <input type="hidden" name="pageFirstTable" value="${pageFirstTable - 1}"/>
+                                        <input type="hidden" name="pageFirstTable"
+                                               value="${pageFirstTable - 1}"/>
                                         <input type="hidden" name="sizeFirstTable" value="5" />
                                         <input type="hidden" name="sizeSecondTable" value="5" />
-                                        <button name="pageSecondTable" value="${indexSecondTable - 1}" type="submit" class="btn btn-outline-dark">${indexSecondTable}</button>
+                                        <button name="pageSecondTable" value="${indexSecondTable - 1}"
+                                                type="submit" class="btn btn-outline-dark">
+                                                ${indexSecondTable}
+                                        </button>
                                     </form>
                                 </li>
                             </c:if>
@@ -141,26 +163,36 @@
             You can use other options
         </div>
         <div class="container">
-            <div class="btn-group d-grid d-md-flex justify-content-center" role="group" aria-label="Basic example">
+            <div class="btn-group d-grid d-md-flex justify-content-center" role="group"
+                 aria-label="Basic example">
                 <form action="<c:url value="/homePage"/>">
                     <button type="submit" class="btn btn-dark">Homepage</button>
                 </form>
                 <form action="<c:url value="/viewAllCreatedGames"/>">
                     <input type="hidden" name="size" value="5" />
-                    <button name="page" value="0"  type="submit" class="btn btn-dark">View all created games</button>
+                    <button name="page" value="0"  type="submit" class="btn btn-dark">
+                        View all created games
+                    </button>
                 </form>
                 <form action="<c:url value="/viewAllAttachedGames"/>">
                     <input type="hidden" name="size" value="5" />
-                    <button name="page" value="0"  type="submit" class="btn btn-dark">View a list of all the games you’ve joined</button>
+                    <button name="page" value="0"  type="submit" class="btn btn-dark">
+                        View a list of all the games you’ve joined
+                    </button>
                 </form>
                 <form action="<c:url value="/myGames"/>">
                     <input type="hidden" name="pageFirstTable" value="0" />
                     <input type="hidden" name="sizeFirstTable" value="5" />
                     <input type="hidden" name="pageSecondTable" value="0" />
-                    <button name="sizeSecondTable" value="5"  type="submit" class="btn btn-dark">View all games</button>
+                    <button name="sizeSecondTable" value="5"  type="submit" class="btn btn-dark">
+                        View all games
+                    </button>
                 </form>
-                <form action="<c:url value="/homePage"/>">
-                    <button type="submit" class="btn btn-dark">See the history of games</button>
+                <form action="<c:url value="/userPayments"/>">
+                    <input type="hidden" name="size" value="5" />
+                    <button name="page" value="0"  type="submit" class="btn btn-dark">
+                        See payment history
+                    </button>
                 </form>
             </div>
         </div>

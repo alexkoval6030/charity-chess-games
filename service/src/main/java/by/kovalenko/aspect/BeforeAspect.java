@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Before;
 @Aspect
 public class BeforeAspect {
     @Before("execution(void by.kovalenko.service.impl.*.validate*())")
-    public void getNameAdvice(){
+    public void getNameAdvice() {
         log.debug("Advice: {}, Pointcut: {}", "`@Before`", "any void method `validate*()`");
     }
 }

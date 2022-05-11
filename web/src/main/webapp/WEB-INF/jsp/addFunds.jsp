@@ -9,7 +9,7 @@
 <body>
 <%@ include file="../static/common/header.jsp" %>
 <div style="text-align: center; font-size: 50px">
-    Registration in Charity Chess Games
+    Account replenishment
 </div>
 <div class="container mt-5 mb-5">
     <div class="row d-flex align-items-center justify-content-center">
@@ -22,12 +22,14 @@
                         <label for="floatingInputFirstName">First name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" id="floatingInputLastName" class="form-control" placeholder="Last name"
+                        <input type="text" id="floatingInputLastName" class="form-control"
+                               placeholder="Last name"
                                name="lastname">
                         <label for="floatingInputLastName">Last name</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" id="floatingInputCardNumber" class="form-control"  placeholder="Card number"
+                        <input type="text" id="floatingInputCardNumber" class="form-control"
+                               placeholder="Card number"
                                name="cardNumber">
                         <label for="floatingInputCardNumber">Card number</label>
                     </div>

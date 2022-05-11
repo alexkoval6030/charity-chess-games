@@ -1,6 +1,9 @@
 package by.kovalenko.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;

@@ -5,7 +5,6 @@ import by.kovalenko.entity.GameEntity;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.entity.WalletEntity;
 
-import java.util.Set;
 import java.util.UUID;
 
 public interface WalletService {

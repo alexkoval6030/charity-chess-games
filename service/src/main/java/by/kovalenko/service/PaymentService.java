@@ -2,7 +2,6 @@ package by.kovalenko.service;
 
 import by.kovalenko.dto.PaymentDto;
 import by.kovalenko.dto.PaymentSearchAttributes;
-import by.kovalenko.entity.PaymentEntity;
 import by.kovalenko.spetification.PaymentSearchSpecification;
 import by.kovalenko.util.PaymentTransactionType;
 import org.springframework.data.domain.Page;

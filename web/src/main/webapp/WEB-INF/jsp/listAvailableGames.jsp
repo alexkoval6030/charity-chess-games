@@ -28,7 +28,8 @@
                     <c:forEach var="availableGame" items="${listAvailableGames}">
                         <tr>
                             <td>
-                                <a class="btn btn-dark" href="<c:url value="/viewParticipants?gameId=${availableGame.id}"/>"
+                                <a class="btn btn-dark"
+                                   href="<c:url value="/viewParticipants?gameId=${availableGame.id}"/>"
                                    role="button">${availableGame.id}</a>
                             </td>
                             <td>${availableGame.creator.username}</td>
@@ -57,7 +58,9 @@
                                 <li class="page-item">
                                     <form action="<c:url value="/listAvailableGames"/>">
                                         <input type="hidden" name="size" value="5" />
-                                        <button name="page" value="${index - 1}" type="submit" class="btn btn-dark">${index}</button>
+                                        <button name="page" value="${index - 1}" type="submit"
+                                                class="btn btn-dark">${index}
+                                        </button>
                                     </form>
                                 </li>
                             </c:if>
@@ -65,7 +68,9 @@
                                 <li class="page-item">
                                     <form action="<c:url value="/listAvailableGames"/>">
                                         <input type="hidden" name="size" value="5" />
-                                        <button name="page" value="${index - 1}" type="submit" class="btn btn-outline-dark">${index}</button>
+                                        <button name="page" value="${index - 1}" type="submit"
+                                                class="btn btn-outline-dark">${index}
+                                        </button>
                                     </form>
                                 </li>
                             </c:if>
@@ -78,26 +83,36 @@
             You can use other options
         </div>
         <div class="container">
-            <div class="btn-group d-grid d-md-flex justify-content-center" role="group" aria-label="Basic example">
+            <div class="btn-group d-grid d-md-flex justify-content-center" role="group"
+                 aria-label="Basic example">
                 <form action="<c:url value="/homePage"/>">
                     <button type="submit" class="btn btn-dark">Homepage</button>
                 </form>
                 <form action="<c:url value="/viewAllCreatedGames"/>">
                     <input type="hidden" name="size" value="5" />
-                    <button name="page" value="0"  type="submit" class="btn btn-dark">View all created games</button>
+                    <button name="page" value="0"  type="submit" class="btn btn-dark">
+                        View all created games
+                    </button>
                 </form>
                 <form action="<c:url value="/viewAllAttachedGames"/>">
                     <input type="hidden" name="size" value="5" />
-                    <button name="page" value="0"  type="submit" class="btn btn-dark">View a list of all the games you’ve joined</button>
+                    <button name="page" value="0"  type="submit" class="btn btn-dark">
+                        View a list of all the games you’ve joined
+                    </button>
                 </form>
                 <form action="<c:url value="/myGames"/>">
                     <input type="hidden" name="pageFirstTable" value="0" />
                     <input type="hidden" name="sizeFirstTable" value="5" />
                     <input type="hidden" name="pageSecondTable" value="0" />
-                    <button name="sizeSecondTable" value="5"  type="submit" class="btn btn-dark">View all games</button>
+                    <button name="sizeSecondTable" value="5"  type="submit" class="btn btn-dark">
+                        View all games
+                    </button>
                 </form>
-                <form action="<c:url value="/homePage"/>">
-                    <button type="submit" class="btn btn-dark">See the history of games</button>
+                <form action="<c:url value="/userPayments"/>">
+                    <input type="hidden" name="size" value="5" />
+                    <button name="page" value="0"  type="submit" class="btn btn-dark">
+                        See payment history
+                    </button>
                 </form>
             </div>
         </div>

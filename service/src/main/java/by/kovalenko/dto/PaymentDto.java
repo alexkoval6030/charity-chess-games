@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PaymentDto {
     private UUID id;
-    private Date paymentDate;
+    private String paymentDate;
     private PaymentTransactionType paymentTransactionType;
     private Double paymentSum;
 }
