@@ -1,5 +1,6 @@
 package by.kovalenko.dto;
 
+import by.kovalenko.util.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,4 +34,8 @@ public class UserDto {
     @NotNull(message = "password cannot be null")
     @Min(value = 7, message = "username should not be less than 2 chars")
     private String password;
+
+    private UserRole role;
+
+    private WalletDto wallet;
 }

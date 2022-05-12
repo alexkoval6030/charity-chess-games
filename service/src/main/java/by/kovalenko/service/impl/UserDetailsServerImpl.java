@@ -3,7 +3,7 @@ package by.kovalenko.service.impl;
 import by.kovalenko.entity.UserEntity;
 import by.kovalenko.repositories.UserRepository;
 import by.kovalenko.util.UserRole;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +17,9 @@ import java.util.Set;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserDetailsServerImpl implements UserDetailsService {
     private final UserRepository userRepository;
-
-    @Autowired
-    public UserDetailsServerImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -35,7 +31,7 @@ public class UserDetailsServerImpl implements UserDetailsService {
                 findByUsername.getPassword(), getAuthorities(findByUsername));
     }
 
-    private Set<GrantedAuthority> getAuthorities(UserEntity user){
+    private Set<GrantedAuthority> getAuthorities(UserEntity user) {
         UserRole role = user.getRole();
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(role.toString()));
