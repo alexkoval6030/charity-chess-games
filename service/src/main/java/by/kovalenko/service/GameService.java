@@ -2,30 +2,36 @@ package by.kovalenko.service;
 
 import by.kovalenko.dto.GameDto;
 import by.kovalenko.dto.UserDto;
+import by.kovalenko.dto.WalletDto;
 import by.kovalenko.entity.GameEntity;
-import by.kovalenko.entity.UserEntity;
+import by.kovalenko.exception.InsufficientFundsException;
 import by.kovalenko.util.GameStatusName;
-import org.springframework.security.core.Authentication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
 public interface GameService {
-    GameDto createGame(Authentication authentication);
+    GameDto createGame(UUID id, WalletDto walletDto, double creationBet) throws InsufficientFundsException;
 
-    GameDto addUserToGame(Authentication authentication, UUID id);
+    GameDto addUserToGame(UserDto userDto, WalletDto walletDto, UUID id, double connectionBet) throws InsufficientFundsException;
 
     GameDto findByGameId(UUID id);
 
-    List<GameDto> findAllCreatedGames(Authentication authentication);
+    Page<GameDto> findAllCreatedGames(UserDto userDto, Pageable pageable);
 
-    HashSet<GameDto> findAllAttachedGames(Authentication authentication);
+    Page<GameDto> findAllAttachedGames(UserDto userDto, Pageable pageable);
 
-    List<GameDto> findAllByGameStatusAndCreatorIsNot(GameStatusName gameStatusName, Authentication authentication);
+    Page<GameDto> findAllByGameStatusAndCreatorIsNot(GameStatusName gameStatusName, UserDto userDto, Pageable pageable);
 
     HashSet<UserDto> findAllParticipants(UUID id);
 
-    List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, LocalDateTime createdDateTime);
+    List<GameEntity> findAllByStatusAndCreatedBefore(GameStatusName gameStatusName, Date createdDateTime);
+
+    GameEntity processingResultCreatorWin(WalletDto walletDto, UUID gameId, Boolean result);
+
+    GameEntity processingResultCreatorLose(WalletDto walletDto, UUID gameId, Boolean result);
 }

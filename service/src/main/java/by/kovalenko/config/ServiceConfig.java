@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan(basePackages = {
         "by.kovalenko.service.impl",
-        "by.kovalenko.mapper",
-        "by.kovalenko.scheduled"
+        "by.kovalenko.scheduled",
+        "by.kovalenko.mapper"
 })
 @EnableTransactionManagement
 @Import(DaoConfig.class)

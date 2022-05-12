@@ -13,12 +13,37 @@
         <img class="rounded mx-auto d-block img-thumbnail" src="img/partners.jpg" alt="partners">
     </div>
     <div class="container">
-        <div class="btn-group d-grid d-md-flex" role="group" aria-label="Basic example">
-            <a class="btn btn-dark" href="<c:url value="/homePage"/>" role="button">Homepage</a>
-            <a class="btn btn-dark" href="<c:url value="/viewAllCreatedGames"/>" role="button">View all created games</a>
-            <a class="btn btn-dark" href="<c:url value="/viewAllAttachedGames"/>" role="button">View a list of all the games you’ve joined</a>
-            <a class="btn btn-dark" href="<c:url value="/myGames"/>" role="button">View all games</a>
-            <a class="btn btn-dark" href="<c:url value="/homePage"/>" role="button">See the history of games</a>
+        <div class="btn-group d-grid d-md-flex justify-content-center" role="group"
+             aria-label="Basic example">
+            <form action="<c:url value="/homePage"/>">
+                <button type="submit" class="btn btn-dark">Homepage</button>
+            </form>
+            <form action="<c:url value="/viewAllCreatedGames"/>">
+                <input type="hidden" name="size" value="5" />
+                <button name="page" value="0"  type="submit" class="btn btn-dark">
+                    View all created games
+                </button>
+            </form>
+            <form action="<c:url value="/viewAllAttachedGames"/>">
+                <input type="hidden" name="size" value="5" />
+                <button name="page" value="0"  type="submit" class="btn btn-dark">
+                    View a list of all the games you’ve joined
+                </button>
+            </form>
+            <form action="<c:url value="/myGames"/>">
+                <input type="hidden" name="pageFirstTable" value="0" />
+                <input type="hidden" name="sizeFirstTable" value="5" />
+                <input type="hidden" name="pageSecondTable" value="0" />
+                <button name="sizeSecondTable" value="5"  type="submit" class="btn btn-dark">
+                    View all games
+                </button>
+            </form>
+            <form action="<c:url value="/userPayments"/>">
+                <input type="hidden" name="size" value="5" />
+                <button name="page" value="0"  type="submit" class="btn btn-dark">
+                    See payment history
+                </button>
+            </form>
         </div>
     </div>
     </body>
