@@ -5,11 +5,14 @@ import by.kovalenko.service.GameService;
 import by.kovalenko.service.WalletService;
 import by.kovalenko.util.GameStatusName;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +20,8 @@ import java.util.List;
 @Service
 @EnableScheduling
 @RequiredArgsConstructor
+@Conditional(ScheduledCondition.class)
+@Slf4j
 public class ScheduledService {
 
     private static final int GAME_DELAY = 3;
@@ -24,6 +29,11 @@ public class ScheduledService {
 
     private final GameService gameService;
     private final WalletService walletService;
+
+    @PostConstruct
+    public void init(){
+        log.info("SCHEDULER ENABLE ON");
+    }
 
     @Scheduled(fixedDelay = SCHEDULER_DELAY_MILLIS)
     @Transactional
