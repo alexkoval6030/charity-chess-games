@@ -3,7 +3,7 @@ http://165.232.177.82:9999/ccg/[Charity chess games]
 
 Credentials to view application features:
 
-Users:
+ Users:
   login - glebglebov,
   password - glebglebov;
   
