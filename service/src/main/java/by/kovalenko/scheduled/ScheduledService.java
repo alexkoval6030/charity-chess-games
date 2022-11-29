@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -29,11 +28,6 @@ public class ScheduledService {
 
     private final GameService gameService;
     private final WalletService walletService;
-
-    @PostConstruct
-    public void init(){
-        log.info("SCHEDULER ENABLE ON");
-    }
 
     @Scheduled(fixedDelay = SCHEDULER_DELAY_MILLIS)
     @Transactional

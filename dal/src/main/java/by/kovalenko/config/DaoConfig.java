@@ -26,7 +26,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "by.kovalenko.repositories")
 @EnableJpaRepositories(basePackages = "by.kovalenko.repositories")
 public class DaoConfig {
-    private Environment env;
+    private final Environment env;
 
     @Autowired
     public DaoConfig(Environment env) {
